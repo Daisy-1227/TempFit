@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "root_files": [
+    "evaluate.py",
+    "inference.py",
+    "train.py"
+  ],
+  "all_review_subfolders_preserved": true,
+  "readme_included": false,
+  "syntax_files": 113,
+  "installer_shell_syntax_passed": true,
+  "engine_requirements_license_bytes_unchanged": true,
+  "checks": {
+    "entry_help_passed": 3,
+    "imports_local": true,
+    "engine_import_correct": true,
+    "source_fingerprint_files": 112
+  },
+  "training_ar_pq_run": false,
+  "fresh_install_run": false,
+  "remote_upload_performed": false
+}

@@ -1,0 +1,12 @@
+环境与外部依赖
+
+Linux/WSL x86_64，Python3.10，CUDA11.8；environment/requirements.txt固定版本及SHA256。
+安装脚本要求提供外部wheelhouse，本审查包仅包含清单与许可参考，不包含wheel。
+FlashAttention：2.7.4.post1+p1industry，源码提交0e79d71175346c7151f49ab6287084a052bc9613。
+Cutlass提交62750a2b75c802660e4894434dc55e839f322277。
+该FlashAttention构建关闭DROPOUT/ALIBI/SOFTCAP/LOCAL，保留backward及uneven head dimension，限本项目当前使用路径。
+PyTorch3D：0.7.8，源码提交182e845c195d87084b02a64016e36e35d3f1a21a。
+x-transformers：2.3.12，加environment/patches内补丁；apply_patch.py校验修改前后哈希。
+确切wheel名称和哈希见environment/WHEEL_MANIFEST.json。通用PyPI包不能直接替代这套专用构建。
+当前未承诺仅用公开网络包即可重建相同环境；wheelhouse发布或完整构建分发说明仍需补齐。
+本次未进行全新环境安装、GPU训练、AR或PQ验收。

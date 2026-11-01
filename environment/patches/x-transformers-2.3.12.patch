@@ -1,0 +1,188 @@
+--- a/x_transformers/x_transformers.py
++++ b/x_transformers/x_transformers.py
+@@ -1777,6 +1777,12 @@
+                 attn_mask = rearrange(attn_mask, 'i j -> 1 1 i j')
+             elif attn_mask.ndim == 3:
+                 attn_mask = rearrange(attn_mask, 'h i j -> 1 h i j')
++
++            # #### 需要根据layer的类型来判断
++            # if context is None:
++            #     #### Add for fix the bug of num_mem_kv
++            attn_mask = pad_at_dim(attn_mask, (self.num_mem_kv, 0), dim = -1, value = True)
++            
+             masks.append(~attn_mask)
+ 
+         if exists(self.max_attend_past):
+@@ -1982,10 +1988,19 @@
+         rel_pos_kwargs: dict = dict(),
+         residual_fn_kwargs: dict = dict(),
+         verbose = True,
++        global_local_ca = False,
++        cross_flash_pattern: tuple | list | None = None,            # 新增：例如 (True, False) → global 用 flash, local 关 flash
++        cross_return_intermediates_pattern: tuple | list | None = None,  # 新增：例如 (False, True) → 只在 local 返回中间量
+         **kwargs
+     ):
+         super().__init__()
+         rotary_pos_emb = rotary_pos_emb or rotary_xpos
++
++        self.global_local_ca = global_local_ca
++        self.attn_flash = kwargs.get('attn_flash', True)
++
++        self.cross_flash_pattern = cross_flash_pattern
++        self.cross_retint_pattern = cross_return_intermediates_pattern
+ 
+         ff_kwargs, kwargs = groupby_prefix_and_trim('ff_', kwargs)
+         attn_kwargs, kwargs = groupby_prefix_and_trim('attn_', kwargs)
+@@ -2253,6 +2268,32 @@
+         is_first_cross_attn = True
+         learned_value_residual_mix &= add_value_residual
+ 
++        #### Add for cross-attention ####
++        n_cross_total = sum(1 for t in self.layer_types if t == 'c')
++        
++        # 若未指定 pattern，则沿用全局开关
++        if self.cross_flash_pattern is None:
++            self.cross_flash_pattern = (self.attn_flash,)        # 单元素，所有 cross 层都一样
++        if self.cross_retint_pattern is None:
++            self.cross_retint_pattern = (True,)
++
++        # 扩展成长度 = n_cross_total 的列表
++        def expand_pattern(pat, total):
++            if not isinstance(pat, (tuple, list)):
++                pat = (pat,)
++            reps = (total + len(pat) - 1) // len(pat)
++            flat = list((list(pat) * reps)[:total])
++            return flat
++
++        cross_flash_flags  = expand_pattern(self.cross_flash_pattern,  n_cross_total)  # [bool]*n_cross_total
++        cross_retint_flags = expand_pattern(self.cross_retint_pattern, n_cross_total)  # [bool]*n_cross_total
++
++        if self.global_local_ca:
++            cross_flash_flags[-1] = False
++        print(f"cross_flash_flags: {cross_flash_flags}")
++
++        cross_idx = 0  # 在全网络层序中的 cross 序号（0,1,2,...）
++
+         # iterate and construct layers
+ 
+         for ind, (layer_type, layer_shift_tokens) in enumerate(zip(self.layer_types, shift_tokens)):
+@@ -2276,8 +2317,13 @@
+                 is_first_self_attn = False
+ 
+             elif layer_type == 'c':
+-                layer = Attention(dim, heads = heads, **{**attn_kwargs, **cross_attn_kwargs})
++
++                use_flash = bool(cross_flash_flags[cross_idx])
++                # print(f"cross_idx: {cross_idx}, use_flash: {use_flash}")
++                layer = Attention(dim, heads = heads, **{**attn_kwargs, **cross_attn_kwargs, 'flash': use_flash})
+                 is_first_cross_attn = False
++
++                cross_idx += 1  # 每次处理完一个 cross 层，序号 +1
+ 
+             elif layer_type == 'f':
+                 layer = FeedForward(dim, **ff_kwargs)
+@@ -2370,7 +2416,10 @@
+         deep_embeds_and_ids: tuple[nn.Parameter, Tensor] | None = None,
+         condition = None,
+         in_attn_cond = None, # https://arxiv.org/abs/2105.04090
+-        layers_execute_order: tuple[int, ...] | None = None
++        layers_execute_order: tuple[int, ...] | None = None,
++        #### Add for cross-attention mask ####
++        cross_attn_mask = None,
++        cross_attn_bias = None,
+     ):
+         assert not (self.cross_attend ^ exists(context)), 'context must be passed in if cross_attend is set to True'
+         assert not (exists(condition) ^ self.need_condition), 'condition needs to be passed in if using adaptive layernorm or vice versa'
+@@ -2532,6 +2581,32 @@
+ 
+         # go through the attention and feedforward layers
+ 
++        ######## Add for global-local cross-attention ########
++        n_cross_total = sum(1 for t in self.layer_types if t == 'c')
++        
++        def _expand_pattern(x, total):
++            # x 可以是 None / Tensor / (Tensor, Tensor, ...) / [Tensor, ...]
++            if x is None:
++                return [None] * total
++            if not isinstance(x, (tuple, list)):
++                return [x] * total
++            # 是 tuple/list：视作“模式”，按总层数重复铺满并截断
++            import math, itertools
++            pattern = list(x)
++            reps = math.ceil(total / len(pattern))
++            flat = list(itertools.islice((pattern * reps), total))
++            return flat
++
++        cross_masks = _expand_pattern(cross_attn_mask, n_cross_total)
++        cross_biases = _expand_pattern(cross_attn_bias, n_cross_total)
++
++        cross_mask_iter = iter(cross_masks)
++        cross_bias_iter = iter(cross_biases)
++        cross_counter = 0
++        # cross_mask_iter = iter(cast_tuple(cross_attn_mask, n_cross))
++        # cross_bias_iter = iter(cast_tuple(cross_attn_bias, n_cross))
++        ######## Add for global-local cross-attention ########
++
+         for ind, (layer_type, skip_combine, (norm, block, residual_fn), layer_dropout, layer_integrator) in enumerate(zip(*layer_variables)):
+             is_last = ind == (len(self.layers) - 1)
+ 
+@@ -2600,7 +2675,41 @@
+             if layer_type == 'a':
+                 out, inter = block(x, mask = mask, context_mask = self_attn_kv_mask, attn_mask = attn_mask, rel_pos = self.rel_pos, pos = pos, rotary_pos_emb = rotary_pos_emb, prev_attn = prev_attn, cache = next(iter_attn_cache, None), mem = layer_mem, mem_mask = layer_mem_mask, attn_bias = attn_bias, value_residual = maybe_self_attn_value_residual, return_intermediates = True)
+             elif layer_type == 'c':
+-                out, inter = block(x, context = context, mask = mask, context_mask = context_mask, prev_attn = prev_cross_attn, cache = next(iter_attn_cache, None), value_residual = maybe_cross_attn_value_residual, **cross_attn_rotary_pos_emb, return_intermediates = True)
++                ######## Add for global-local cross-attention ########
++                this_cross_mask = next(cross_mask_iter, None)
++                this_cross_bias = next(cross_bias_iter, None)
++
++                ######## Assume each block has only two cross-attention layers #######
++                # if self.global_local_ca:
++                #     is_local = cross_counter % 2 == 0
++                #     out, inter = block(
++                #         x,
++                #         context = context,
++                #         context_mask = context_mask,
++                #         prev_attn = prev_cross_attn,
++                #         attn_mask = this_cross_mask,
++                #         attn_bias = this_cross_bias,
++                #         return_intermediates = True,     # 关键：让 inter 里带 post_softmax_attn
++                #         flash = (not is_local) and self.attn_flash  # 仅 local 关闭 flash
++                #     )
++                #     cross_counter += 1
++                # else:
++                out, inter = block(
++                    x, 
++                    context = context, 
++                    mask = mask, 
++                    context_mask = context_mask, 
++                    attn_mask=this_cross_mask, attn_bias=this_cross_bias, 
++                    prev_attn = prev_cross_attn, 
++                    cache = next(iter_attn_cache, None), 
++                    value_residual = maybe_cross_attn_value_residual, 
++                    **cross_attn_rotary_pos_emb, 
++                    return_intermediates = True
++                )
++                ######## Add for global-local cross-attention ########
++                # ##### Fix for supporting cross-attention mask #####
++                # # out, inter = block(x, context = context, mask = mask, context_mask = context_mask, prev_attn = prev_cross_attn, cache = next(iter_attn_cache, None), value_residual = maybe_cross_attn_value_residual, **cross_attn_rotary_pos_emb, return_intermediates = True)
++                # out, inter = block(x, context = context, mask = mask, context_mask = context_mask, attn_mask=cross_attn_mask, attn_bias=cross_attn_bias, prev_attn = prev_cross_attn, cache = next(iter_attn_cache, None), value_residual = maybe_cross_attn_value_residual, **cross_attn_rotary_pos_emb, return_intermediates = True)
+             elif layer_type == 'f':
+                 out = block(x, deep_embed = next(deep_embeds_iter, None))
+ 
+@@ -2680,6 +2789,7 @@
+         *args,
+         attn_mask = None,
+         prefix_attn_len = None,
++        cross_attn_mask = None,
+         **kwargs
+     ):
+         b, n, device = x.shape[0], x.shape[1], x.device
+@@ -2697,7 +2807,7 @@
+         if exists(attn_mask):
+             forwarded_mask = forwarded_mask & attn_mask
+ 
+-        return super().forward(x, *args, attn_mask = forwarded_mask, **kwargs)
++        return super().forward(x, *args, attn_mask = forwarded_mask, cross_attn_mask = cross_attn_mask, **kwargs)
+ 
+ class CrossAttender(AttentionLayers):
+     def __init__(self, **kwargs):

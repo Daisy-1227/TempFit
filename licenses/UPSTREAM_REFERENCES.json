@@ -1,0 +1,146 @@
+[
+  {
+    "repository": "Pointcept/PointTransformerV3",
+    "api_url": "https://api.github.com/repos/Pointcept/PointTransformerV3/license",
+    "checked_at_utc": "2026-11-01T08:13:19.128757+00:00",
+    "applies_to_local_copy": "UNRESOLVED: current upstream license is not proof of local source version",
+    "status": "retrieved",
+    "html_url": "https://github.com/Pointcept/PointTransformerV3/blob/main/LICENSE",
+    "git_blob_sha": "fe463e0f7888bbf8b82e42d55f5743508ddafb7e",
+    "license": {
+      "key": "other",
+      "name": "Other",
+      "spdx_id": "NOASSERTION",
+      "url": null,
+      "node_id": "MDc6TGljZW5zZTA="
+    },
+    "sha256": "41003d4a74749c0220e33dd415042164b5a1093ed401f36277234f772d22d3d0",
+    "saved_path": "licenses/upstream/Pointcept__PointTransformerV3.txt"
+  },
+  {
+    "repository": "Pointcept/Pointcept",
+    "api_url": "https://api.github.com/repos/Pointcept/Pointcept/license",
+    "checked_at_utc": "2026-11-01T08:13:19.129227+00:00",
+    "applies_to_local_copy": "UNRESOLVED: current upstream license is not proof of local source version",
+    "status": "retrieved",
+    "html_url": "https://github.com/Pointcept/Pointcept/blob/main/LICENSE",
+    "git_blob_sha": "ee1fac1b22ae96f38e681900a3181d3e70ac6e4f",
+    "license": {
+      "key": "mit",
+      "name": "MIT License",
+      "spdx_id": "MIT",
+      "url": "https://api.github.com/licenses/mit",
+      "node_id": "MDc6TGljZW5zZTEz"
+    },
+    "sha256": "33287c1b71d0ce42d2a9d96e4451ef7668362733dc72c11973c3de1181b18153",
+    "saved_path": "licenses/upstream/Pointcept__Pointcept.txt"
+  },
+  {
+    "repository": "PrincetonLIPS/numpy-hilbert-curve",
+    "api_url": "https://api.github.com/repos/PrincetonLIPS/numpy-hilbert-curve/license",
+    "checked_at_utc": "2026-11-01T08:13:19.129503+00:00",
+    "applies_to_local_copy": "UNRESOLVED: current upstream license is not proof of local source version",
+    "status": "retrieved",
+    "html_url": "https://github.com/PrincetonLIPS/numpy-hilbert-curve/blob/main/LICENSE",
+    "git_blob_sha": "f5d1dcdb968da7402fbc008ff53d6cceca02de6f",
+    "license": {
+      "key": "mit",
+      "name": "MIT License",
+      "spdx_id": "MIT",
+      "url": "https://api.github.com/licenses/mit",
+      "node_id": "MDc6TGljZW5zZTEz"
+    },
+    "sha256": "190a6f5fd23bf32a1507841c38c7ece99306398fda46dc749ace5461317b9d92",
+    "saved_path": "licenses/upstream/PrincetonLIPS__numpy-hilbert-curve.txt"
+  },
+  {
+    "repository": "amazon-science/object-centric-learning-framework",
+    "api_url": "https://api.github.com/repos/amazon-science/object-centric-learning-framework/license",
+    "checked_at_utc": "2026-11-01T08:13:19.576435+00:00",
+    "applies_to_local_copy": "UNRESOLVED: current upstream license is not proof of local source version",
+    "status": "retrieved",
+    "html_url": "https://github.com/amazon-science/object-centric-learning-framework/blob/dependabot/pip/scripts/datasets/grpcio-1.54.3/LICENSE",
+    "git_blob_sha": "67db8588217f266eb561f75fae738656325deac9",
+    "license": {
+      "key": "apache-2.0",
+      "name": "Apache License 2.0",
+      "spdx_id": "Apache-2.0",
+      "url": "https://api.github.com/licenses/apache-2.0",
+      "node_id": "MDc6TGljZW5zZTI="
+    },
+    "sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b",
+    "saved_path": "licenses/upstream/amazon-science__object-centric-learning-framework.txt"
+  },
+  {
+    "repository": "facebookresearch/3detr",
+    "api_url": "https://api.github.com/repos/facebookresearch/3detr/license",
+    "checked_at_utc": "2026-11-01T08:13:19.577720+00:00",
+    "applies_to_local_copy": "UNRESOLVED: current upstream license is not proof of local source version",
+    "status": "retrieved",
+    "html_url": "https://github.com/facebookresearch/3detr/blob/main/LICENSE",
+    "git_blob_sha": "b09cd7856d58590578ee1a4f3ad45d1310a97f87",
+    "license": {
+      "key": "apache-2.0",
+      "name": "Apache License 2.0",
+      "spdx_id": "Apache-2.0",
+      "url": "https://api.github.com/licenses/apache-2.0",
+      "node_id": "MDc6TGljZW5zZTI="
+    },
+    "sha256": "50e6751797c50dedd75ef1b8a0d9e42f5f8472e9fbce91f34718e9f97b0c780a",
+    "saved_path": "licenses/upstream/facebookresearch__3detr.txt"
+  },
+  {
+    "repository": "open-mmlab/mmcv",
+    "api_url": "https://api.github.com/repos/open-mmlab/mmcv/license",
+    "checked_at_utc": "2026-11-01T08:13:19.604898+00:00",
+    "applies_to_local_copy": "UNRESOLVED: current upstream license is not proof of local source version",
+    "status": "retrieved",
+    "html_url": "https://github.com/open-mmlab/mmcv/blob/main/LICENSE",
+    "git_blob_sha": "f02314255d824c0816b0bf1648aac8ab78976199",
+    "license": {
+      "key": "apache-2.0",
+      "name": "Apache License 2.0",
+      "spdx_id": "Apache-2.0",
+      "url": "https://api.github.com/licenses/apache-2.0",
+      "node_id": "MDc6TGljZW5zZTI="
+    },
+    "sha256": "866d999d3ca92d2c5dc9b0afc941c5fac6529e2d180fc638274f91f7fce161d7",
+    "saved_path": "licenses/upstream/open-mmlab__mmcv.txt"
+  },
+  {
+    "repository": "singhgautam/slate",
+    "api_url": "https://api.github.com/repos/singhgautam/slate/license",
+    "checked_at_utc": "2026-11-01T08:13:20.065317+00:00",
+    "applies_to_local_copy": "UNRESOLVED: current upstream license is not proof of local source version",
+    "status": "retrieved",
+    "html_url": "https://github.com/singhgautam/slate/blob/master/LICENSE",
+    "git_blob_sha": "f52cdec1452709601ddbba923141d1912260d178",
+    "license": {
+      "key": "mit",
+      "name": "MIT License",
+      "spdx_id": "MIT",
+      "url": "https://api.github.com/licenses/mit",
+      "node_id": "MDc6TGljZW5zZTEz"
+    },
+    "sha256": "b6b8b15dcb85d5e335aaf44d1f5e1dbde7dc5bf960e238912203ce93d0b42f0a",
+    "saved_path": "licenses/upstream/singhgautam__slate.txt"
+  },
+  {
+    "repository": "YuLiu-LY/BO-QSA",
+    "api_url": "https://api.github.com/repos/YuLiu-LY/BO-QSA/license",
+    "checked_at_utc": "2026-11-01T08:13:20.066547+00:00",
+    "applies_to_local_copy": "UNRESOLVED: current upstream license is not proof of local source version",
+    "status": "unresolved",
+    "error_type": "HTTPError",
+    "http_status": 404
+  },
+  {
+    "repository": "nicehuster/SymPointV2",
+    "api_url": "https://api.github.com/repos/nicehuster/SymPointV2/license",
+    "checked_at_utc": "2026-11-01T08:13:20.068140+00:00",
+    "applies_to_local_copy": "UNRESOLVED: current upstream license is not proof of local source version",
+    "status": "unresolved",
+    "error_type": "HTTPError",
+    "http_status": 404
+  }
+]

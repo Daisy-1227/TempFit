@@ -1,0 +1,635 @@
+{
+  "files": [
+    {
+      "name": "jinja2",
+      "version": "3.1.6",
+      "file": "Jinja2-3.1.6-py3-none-any.whl",
+      "sha256": "85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67",
+      "bytes": 134899
+    },
+    {
+      "name": "markupsafe",
+      "version": "3.0.2",
+      "file": "MarkupSafe-3.0.2-cp310-cp310-manylinux_2_17_x86_64.whl",
+      "sha256": "bbcb445fa71794da8f178f0f6d66789a28d7319071af7a496d4d507ed566270d",
+      "bytes": 20866
+    },
+    {
+      "name": "pyyaml",
+      "version": "6.0.2",
+      "file": "PyYAML-6.0.2-cp310-cp310-manylinux_2_17_x86_64.whl",
+      "sha256": "ec031d5d2feb36d1d1a24380e4db6d43695f3748343d99434e6f5f9156aaa2ed",
+      "bytes": 751239
+    },
+    {
+      "name": "accelerate",
+      "version": "1.7.0",
+      "file": "accelerate-1.7.0-py3-none-any.whl",
+      "sha256": "cf57165cca28769c6cf2650812371c81b18e05743dfa3c748524b1bb4f2b272f",
+      "bytes": 362095
+    },
+    {
+      "name": "addict",
+      "version": "2.4.0",
+      "file": "addict-2.4.0-py3-none-any.whl",
+      "sha256": "249bb56bbfd3cdc2a004ea0ff4c2b6ddc84d53bc2194761636eb314d5cfa5dfc",
+      "bytes": 3832
+    },
+    {
+      "name": "antlr4-python3-runtime",
+      "version": "4.9.3",
+      "file": "antlr4_python3_runtime-4.9.3-py3-none-any.whl",
+      "sha256": "ddfbe4d1f345fac12dc1b70227b7ca602528638dce98cc848ea8f332ce90d5a3",
+      "bytes": 144590
+    },
+    {
+      "name": "backports-datetime-fromisoformat",
+      "version": "2.0.3",
+      "file": "backports_datetime_fromisoformat-2.0.3-cp310-cp310-manylinux_2_17_x86_64.whl",
+      "sha256": "39d57ea50aa5a524bb239688adc1d1d824c31b6094ebd39aa164d6cadb85de22",
+      "bytes": 52798
+    },
+    {
+      "name": "beartype",
+      "version": "0.21.0",
+      "file": "beartype-0.21.0-py3-none-any.whl",
+      "sha256": "b6a1bd56c72f31b0a496a36cc55df6e2f475db166ad07fa4acc7e74f4c7f34c0",
+      "bytes": 1191340
+    },
+    {
+      "name": "ccimport",
+      "version": "0.4.4",
+      "file": "ccimport-0.4.4-py3-none-any.whl",
+      "sha256": "7c78f1258d372de787b7ebe351fb56890f2141b8643c3a45b1842b23828d5245",
+      "bytes": 27287
+    },
+    {
+      "name": "certifi",
+      "version": "2025.11.12",
+      "file": "certifi-2025.11.12-py3-none-any.whl",
+      "sha256": "97de8790030bbd5c2d96b7ec782fc2f7820ef8dba6db909ccf95449f2d062d4b",
+      "bytes": 159438
+    },
+    {
+      "name": "charset-normalizer",
+      "version": "3.4.2",
+      "file": "charset_normalizer-3.4.2-cp310-cp310-manylinux_2_17_x86_64.whl",
+      "sha256": "8075c35cd58273fee266c58c0c9b670947c19df5fb98e7b66710e04ad4e9ff86",
+      "bytes": 149471
+    },
+    {
+      "name": "contourpy",
+      "version": "1.3.2",
+      "file": "contourpy-1.3.2-cp310-cp310-manylinux_2_17_x86_64.whl",
+      "sha256": "ad687a04bc802cbe8b9c399c07162a3c35e227e2daccf1668eb1f278cb698631",
+      "bytes": 325027
+    },
+    {
+      "name": "cumm-cu118",
+      "version": "0.7.11",
+      "file": "cumm_cu118-0.7.11-cp310-cp310-manylinux_2_17_x86_64.whl",
+      "sha256": "f3d89ec43d1db13a7e80d4d5bba96116c8a80855bbab0db14be64a8e1537a169",
+      "bytes": 25606440
+    },
+    {
+      "name": "cycler",
+      "version": "0.12.1",
+      "file": "cycler-0.12.1-py3-none-any.whl",
+      "sha256": "85cef7cff222d8644161529808465972e51340599459b8ac3ccbac5a854e0d30",
+      "bytes": 8321
+    },
+    {
+      "name": "einops",
+      "version": "0.8.1",
+      "file": "einops-0.8.1-py3-none-any.whl",
+      "sha256": "919387eb55330f5757c6bea9165c5ff5cfe63a642682ea788a6d472576d81737",
+      "bytes": 64359
+    },
+    {
+      "name": "einx",
+      "version": "0.3.0",
+      "file": "einx-0.3.0-py3-none-any.whl",
+      "sha256": "367d62bab8dbb8c4937308512abb6f746cc0920990589892ba0d281356d39345",
+      "bytes": 102958
+    },
+    {
+      "name": "environs",
+      "version": "14.2.0",
+      "file": "environs-14.2.0-py3-none-any.whl",
+      "sha256": "22669a58d53c5b86a25d0231c4a41a6ebeb82d3942b8fbd9cf645890c92a1843",
+      "bytes": 15733
+    },
+    {
+      "name": "filelock",
+      "version": "3.18.0",
+      "file": "filelock-3.18.0-py3-none-any.whl",
+      "sha256": "c401f4f8377c4464e6db25fff06205fd89bdd83b65eb0488ed1b160f780e21de",
+      "bytes": 16215
+    },
+    {
+      "name": "fire",
+      "version": "0.7.0",
+      "file": "fire-0.7.0-py3-none-any.whl",
+      "sha256": "856f3a04f582caa482a0c329671ba240fc620b67c9ae1ba56037b659139b9d12",
+      "bytes": 114329
+    },
+    {
+      "name": "flash-attn",
+      "version": "2.7.4.post1+p1industry",
+      "file": "flash_attn-2.7.4.post1+p1industry-cp310-cp310-linux_x86_64.whl",
+      "sha256": "67fde60808f22315686095ee061adc42ea2625fc7ce7702edd391f49052f8e60",
+      "bytes": 13631370
+    },
+    {
+      "name": "fonttools",
+      "version": "4.58.1",
+      "file": "fonttools-4.58.1-cp310-cp310-manylinux_2_17_x86_64.whl",
+      "sha256": "3aa4fa41e9cb43f78881a5896d6e41b6a0ec54e9d68e7eaaff6d7a1769b17017",
+      "bytes": 4750798
+    },
+    {
+      "name": "frozendict",
+      "version": "2.4.6",
+      "file": "frozendict-2.4.6-cp310-cp310-manylinux_2_17_x86_64.whl",
+      "sha256": "da6a10164c8a50b34b9ab508a9420df38f4edf286b9ca7b7df8a91767baecb34",
+      "bytes": 117444
+    },
+    {
+      "name": "fsspec",
+      "version": "2025.5.1",
+      "file": "fsspec-2025.5.1-py3-none-any.whl",
+      "sha256": "24d3a2e663d5fc735ab256263c4075f374a174c3410c0b25e5bd1970bceaa462",
+      "bytes": 199052
+    },
+    {
+      "name": "gateloop-transformer",
+      "version": "0.2.5",
+      "file": "gateloop_transformer-0.2.5-py3-none-any.whl",
+      "sha256": "01bba3f2716f2b462e855decb9665880c6a757b2878d31e02fbc4eb491767323",
+      "bytes": 10367
+    },
+    {
+      "name": "hilbertcurve",
+      "version": "2.0.5",
+      "file": "hilbertcurve-2.0.5-py3-none-any.whl",
+      "sha256": "dbaad510237d3cd4355c189f00e8dbe66a9e66e03af37f9d3f257799292da363",
+      "bytes": 8595
+    },
+    {
+      "name": "huggingface-hub",
+      "version": "0.31.4",
+      "file": "huggingface_hub-0.31.4-py3-none-any.whl",
+      "sha256": "4f70704760296cc69b612916056e9845f5490a33782b924fc531767967acc15d",
+      "bytes": 489319
+    },
+    {
+      "name": "idna",
+      "version": "3.10",
+      "file": "idna-3.10-py3-none-any.whl",
+      "sha256": "946d195a0d259cbba61165e88e65941f16e9b36ea6ddb97f00452bae8b1287d3",
+      "bytes": 70442
+    },
+    {
+      "name": "industrycad-candidate",
+      "version": "0.1.0.dev3",
+      "file": "industrycad_candidate-0.1.0.dev3-py3-none-any.whl",
+      "sha256": "e0dc42bedb4a79e4a043bcc80ad723cdd8a5603c12a180d405e6016af9346c57",
+      "bytes": 406718
+    },
+    {
+      "name": "iopath",
+      "version": "0.1.10",
+      "file": "iopath-0.1.10-py3-none-any.whl",
+      "sha256": "7471b935556370238a5c84ac93a4b8e37e0962bd4bbe33330fb157b6244e74df",
+      "bytes": 31598
+    },
+    {
+      "name": "jaxtyping",
+      "version": "0.3.2",
+      "file": "jaxtyping-0.3.2-py3-none-any.whl",
+      "sha256": "6a020fd276226ddb5ac4f5725323843dd65e3c7e85c64fd62431e5f738c74e04",
+      "bytes": 55409
+    },
+    {
+      "name": "kiwisolver",
+      "version": "1.4.7",
+      "file": "kiwisolver-1.4.7-cp310-cp310-manylinux_2_12_x86_64.whl",
+      "sha256": "88f17c5ffa8e9462fb79f62746428dd57b46eb931698e42e990ad63103f35e6c",
+      "bytes": 1617814
+    },
+    {
+      "name": "lark",
+      "version": "1.2.2",
+      "file": "lark-1.2.2-py3-none-any.whl",
+      "sha256": "c2276486b02f0f1b90be155f2c8ba4a8e194d42775786db622faccd652d8e80c",
+      "bytes": 111036
+    },
+    {
+      "name": "loguru",
+      "version": "0.7.3",
+      "file": "loguru-0.7.3-py3-none-any.whl",
+      "sha256": "31a33c10c8e1e10422bfd431aeb5d351c7cf7fa671e3c4df004162264b28220c",
+      "bytes": 61595
+    },
+    {
+      "name": "marshmallow",
+      "version": "4.0.0",
+      "file": "marshmallow-4.0.0-py3-none-any.whl",
+      "sha256": "e7b0528337e9990fd64950f8a6b3a1baabed09ad17a0dfb844d701151f92d203",
+      "bytes": 48420
+    },
+    {
+      "name": "matplotlib",
+      "version": "3.10.3",
+      "file": "matplotlib-3.10.3-cp310-cp310-manylinux_2_17_x86_64.whl",
+      "sha256": "a49e39755580b08e30e3620efc659330eac5d6534ab7eae50fa5e31f53ee4e30",
+      "bytes": 8590801
+    },
+    {
+      "name": "mpmath",
+      "version": "1.3.0",
+      "file": "mpmath-1.3.0-py3-none-any.whl",
+      "sha256": "a0b2b9fe80bbcd81a6647ff13108738cfb482d481d826cc0e02f5b35e5c88d2c",
+      "bytes": 536198
+    },
+    {
+      "name": "networkx",
+      "version": "3.4.2",
+      "file": "networkx-3.4.2-py3-none-any.whl",
+      "sha256": "df5d4365b724cf81b8c6a7312509d0c22386097011ad1abe274afd5e9d3bbc5f",
+      "bytes": 1723263
+    },
+    {
+      "name": "ninja",
+      "version": "1.11.1.4",
+      "file": "ninja-1.11.1.4-py3-none-manylinux_2_12_x86_64.whl",
+      "sha256": "096487995473320de7f65d622c3f1d16c3ad174797602218ca8c967f51ec38a0",
+      "bytes": 422814
+    },
+    {
+      "name": "numpy",
+      "version": "2.2.6",
+      "file": "numpy-2.2.6-cp310-cp310-manylinux_2_17_x86_64.whl",
+      "sha256": "fc7b73d02efb0e18c000e9ad8b83480dfcd5dfd11065997ed4c6747470ae8915",
+      "bytes": 16801050
+    },
+    {
+      "name": "nvidia-cublas-cu11",
+      "version": "11.11.3.6",
+      "file": "nvidia_cublas_cu11-11.11.3.6-py3-none-manylinux2014_x86_64.whl",
+      "sha256": "60252822adea5d0b10cd990a7dc7bedf7435f30ae40083c7a624a85a43225abc",
+      "bytes": 417870460
+    },
+    {
+      "name": "nvidia-cuda-cupti-cu11",
+      "version": "11.8.87",
+      "file": "nvidia_cuda_cupti_cu11-11.8.87-py3-none-manylinux2014_x86_64.whl",
+      "sha256": "4191a17913a706b5098681280cd089cd7d8d3df209a6f5cb79384974a96d24f2",
+      "bytes": 13093662
+    },
+    {
+      "name": "nvidia-cuda-nvrtc-cu11",
+      "version": "11.8.89",
+      "file": "nvidia_cuda_nvrtc_cu11-11.8.89-py3-none-manylinux2014_x86_64.whl",
+      "sha256": "a8d02f3cba345be56b1ffc3e74d8f61f02bb758dd31b0f20e12277a5a244f756",
+      "bytes": 23173745
+    },
+    {
+      "name": "nvidia-cuda-runtime-cu11",
+      "version": "11.8.89",
+      "file": "nvidia_cuda_runtime_cu11-11.8.89-py3-none-manylinux2014_x86_64.whl",
+      "sha256": "92d04069a987e1fbc9213f8376d265df0f7bb42617d44f5eda1f496acea7f2d1",
+      "bytes": 875592
+    },
+    {
+      "name": "nvidia-cudnn-cu11",
+      "version": "9.1.0.70",
+      "file": "nvidia_cudnn_cu11-9.1.0.70-py3-none-manylinux2014_x86_64.whl",
+      "sha256": "e6135ac63fe9d5b0b89cfb35c3fc1c1349f2b995becadf2e9dc21bca89d9633d",
+      "bytes": 663919573
+    },
+    {
+      "name": "nvidia-cufft-cu11",
+      "version": "10.9.0.58",
+      "file": "nvidia_cufft_cu11-10.9.0.58-py3-none-manylinux2014_x86_64.whl",
+      "sha256": "e21037259995243cc370dd63c430d77ae9280bedb68d5b5a18226bfc92e5d748",
+      "bytes": 168405419
+    },
+    {
+      "name": "nvidia-curand-cu11",
+      "version": "10.3.0.86",
+      "file": "nvidia_curand_cu11-10.3.0.86-py3-none-manylinux2014_x86_64.whl",
+      "sha256": "cd4cffbf78bb06580206b4814d5dc696d1161c902aae37b2bba00056832379e6",
+      "bytes": 58124497
+    },
+    {
+      "name": "nvidia-cusolver-cu11",
+      "version": "11.4.1.48",
+      "file": "nvidia_cusolver_cu11-11.4.1.48-py3-none-manylinux2014_x86_64.whl",
+      "sha256": "ea9fb1ad8c644ca9ed55af13cc39af3b7ba4c3eb5aef18471fe1fe77d94383cb",
+      "bytes": 128246438
+    },
+    {
+      "name": "nvidia-cusparse-cu11",
+      "version": "11.7.5.86",
+      "file": "nvidia_cusparse_cu11-11.7.5.86-py3-none-manylinux2014_x86_64.whl",
+      "sha256": "8d7cf1628fd8d462b5d2ba6678fae34733a48ecb80495b9c68672ec6a6dde5ef",
+      "bytes": 204126227
+    },
+    {
+      "name": "nvidia-nccl-cu11",
+      "version": "2.21.5",
+      "file": "nvidia_nccl_cu11-2.21.5-py3-none-manylinux2014_x86_64.whl",
+      "sha256": "49d8350629c7888701d1fd200934942671cb5c728f49acc5a0b3a768820bed29",
+      "bytes": 147811630
+    },
+    {
+      "name": "nvidia-nvtx-cu11",
+      "version": "11.8.86",
+      "file": "nvidia_nvtx_cu11-11.8.86-py3-none-manylinux2014_x86_64.whl",
+      "sha256": "979f5b2aef5da164c5c53c64c85c3dfa61b8b4704f4f963bb568bf98fa8472e8",
+      "bytes": 99130
+    },
+    {
+      "name": "omegaconf",
+      "version": "2.3.0",
+      "file": "omegaconf-2.3.0-py3-none-any.whl",
+      "sha256": "7b4df175cdb08ba400f45cae3bdcae7ba8365db4d165fc65fd04b050ab63b46b",
+      "bytes": 79500
+    },
+    {
+      "name": "opencv-python",
+      "version": "4.11.0.86",
+      "file": "opencv_python-4.11.0.86-cp37-abi3-manylinux_2_17_x86_64.whl",
+      "sha256": "6b02611523803495003bd87362db3e1d2a0454a6a63025dc6658a9830570aa0d",
+      "bytes": 62986597
+    },
+    {
+      "name": "packaging",
+      "version": "25.0",
+      "file": "packaging-25.0-py3-none-any.whl",
+      "sha256": "29572ef2b1f17581046b3a2227d5c611fb25ec70ca1ba8554b24b0e69331a484",
+      "bytes": 66469
+    },
+    {
+      "name": "pccm",
+      "version": "0.4.16",
+      "file": "pccm-0.4.16-py3-none-any.whl",
+      "sha256": "97e97c341c50c40965bb8f9a8a1ad201868d64e8baa06f9581bedeb3bc223eec",
+      "bytes": 73731
+    },
+    {
+      "name": "pillow",
+      "version": "11.2.1",
+      "file": "pillow-11.2.1-cp310-cp310-manylinux_2_28_x86_64.whl",
+      "sha256": "c97209e85b5be259994eb5b69ff50c5d20cca0f458ef9abd835e262d9d88b39d",
+      "bytes": 4599802
+    },
+    {
+      "name": "portalocker",
+      "version": "3.1.1",
+      "file": "portalocker-3.1.1-py3-none-any.whl",
+      "sha256": "80e984e24de292ff258a5bea0e4f3f778fff84c0ae1275dbaebc4658de4aacb3",
+      "bytes": 19661
+    },
+    {
+      "name": "psutil",
+      "version": "7.0.0",
+      "file": "psutil-7.0.0-cp36-abi3-manylinux_2_12_x86_64.whl",
+      "sha256": "4b1388a4f6875d7e2aff5c4ca1cc16c545ed41dd8bb596cefea80111db353a34",
+      "bytes": 277986
+    },
+    {
+      "name": "pybind11",
+      "version": "2.13.6",
+      "file": "pybind11-2.13.6-py3-none-any.whl",
+      "sha256": "237c41e29157b962835d356b370ededd57594a26d5894a795960f0047cb5caf5",
+      "bytes": 243282
+    },
+    {
+      "name": "pyparsing",
+      "version": "3.2.3",
+      "file": "pyparsing-3.2.3-py3-none-any.whl",
+      "sha256": "a749938e02d6fd0b59b356ca504a24982314bb090c383e3cf201c95ef7e2bfcf",
+      "bytes": 111120
+    },
+    {
+      "name": "python-dateutil",
+      "version": "2.9.0.post0",
+      "file": "python_dateutil-2.9.0.post0-py3-none-any.whl",
+      "sha256": "a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427",
+      "bytes": 229892
+    },
+    {
+      "name": "python-dotenv",
+      "version": "1.1.0",
+      "file": "python_dotenv-1.1.0-py3-none-any.whl",
+      "sha256": "d7c01d9e2293916c18baf562d95698754b0dbbb5e74d457c45d4f6561fb9d55d",
+      "bytes": 20256
+    },
+    {
+      "name": "pytorch3d",
+      "version": "0.7.8",
+      "file": "pytorch3d-0.7.8-cp310-cp310-linux_x86_64.whl",
+      "sha256": "b644918fea08bcd314df771a5c6e03388f632bff9a53d4f205c8c0d0e6c966a3",
+      "bytes": 57565634
+    },
+    {
+      "name": "regex",
+      "version": "2024.11.6",
+      "file": "regex-2024.11.6-cp310-cp310-manylinux_2_17_x86_64.whl",
+      "sha256": "997d6a487ff00807ba810e0f8332c18b4eb8d29463cfb7c820dc4b6e7562d0cf",
+      "bytes": 781702
+    },
+    {
+      "name": "requests",
+      "version": "2.32.3",
+      "file": "requests-2.32.3-py3-none-any.whl",
+      "sha256": "70761cfe03c773ceb22aa2f671b4757976145175cdfca038c02654d061d6dcc6",
+      "bytes": 64928
+    },
+    {
+      "name": "rotary-embedding-torch",
+      "version": "0.8.6",
+      "file": "rotary_embedding_torch-0.8.6-py3-none-any.whl",
+      "sha256": "1e92c09401af861dca768026af771885d51309ddf13a6028fce53e11801016de",
+      "bytes": 5616
+    },
+    {
+      "name": "safetensors",
+      "version": "0.5.3",
+      "file": "safetensors-0.5.3-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "sha256": "cead1fa41fc54b1e61089fa57452e8834f798cb1dc7a09ba3524f1eb08e0317a",
+      "bytes": 471642
+    },
+    {
+      "name": "scipy",
+      "version": "1.15.2",
+      "file": "scipy-1.15.2-cp310-cp310-manylinux_2_17_x86_64.whl",
+      "sha256": "69ea6e56d00977f355c0f84eba69877b6df084516c602d93a33812aa04d90a3d",
+      "bytes": 37646981
+    },
+    {
+      "name": "setuptools",
+      "version": "80.8.0",
+      "file": "setuptools-80.8.0-py3-none-any.whl",
+      "sha256": "95a60484590d24103af13b686121328cc2736bee85de8936383111e421b9edc0",
+      "bytes": 1201470
+    },
+    {
+      "name": "six",
+      "version": "1.17.0",
+      "file": "six-1.17.0-py3-none-any.whl",
+      "sha256": "4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274",
+      "bytes": 11050
+    },
+    {
+      "name": "spconv-cu118",
+      "version": "2.3.8",
+      "file": "spconv_cu118-2.3.8-cp310-cp310-manylinux_2_17_x86_64.whl",
+      "sha256": "d32f056457773522b54fefcd3380684c92b531fc7f4fb303d623eee8c24d4e54",
+      "bytes": 75891830
+    },
+    {
+      "name": "svgpathtools",
+      "version": "1.7.1",
+      "file": "svgpathtools-1.7.1-py3-none-any.whl",
+      "sha256": "3cbb8ba0e8d200f9639034608d9c55b68efbc1bef99ea99559a3e7cb024fb738",
+      "bytes": 68280
+    },
+    {
+      "name": "svgwrite",
+      "version": "1.4.3",
+      "file": "svgwrite-1.4.3-py3-none-any.whl",
+      "sha256": "bb6b2b5450f1edbfa597d924f9ac2dd099e625562e492021d7dd614f65f8a22d",
+      "bytes": 67122
+    },
+    {
+      "name": "sympy",
+      "version": "1.13.1",
+      "file": "sympy-1.13.1-py3-none-any.whl",
+      "sha256": "db36cdc64bf61b9b24578b6f7bab1ecdd2452cf008f34faa33776680c26d66f8",
+      "bytes": 6189177
+    },
+    {
+      "name": "termcolor",
+      "version": "3.1.0",
+      "file": "termcolor-3.1.0-py3-none-any.whl",
+      "sha256": "591dd26b5c2ce03b9e43f391264626557873ce1d379019786f99b0c2bee140aa",
+      "bytes": 7684
+    },
+    {
+      "name": "timm",
+      "version": "1.0.15",
+      "file": "timm-1.0.15-py3-none-any.whl",
+      "sha256": "5a3dc460c24e322ecc7fd1f3e3eb112423ddee320cb059cc1956fbc9731748ef",
+      "bytes": 2361373
+    },
+    {
+      "name": "tokenizers",
+      "version": "0.21.1",
+      "file": "tokenizers-0.21.1-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "sha256": "2dd9a0061e403546f7377df940e866c3e678d7d4e9643d0461ea442b4f89e61a",
+      "bytes": 3038874
+    },
+    {
+      "name": "toolz",
+      "version": "1.0.0",
+      "file": "toolz-1.0.0-py3-none-any.whl",
+      "sha256": "292c8f1c4e7516bf9086f8850935c799a874039c8bcf959d47b600e4c44a6236",
+      "bytes": 56383
+    },
+    {
+      "name": "torch",
+      "version": "2.5.0+cu118",
+      "file": "torch-2.5.0+cu118-cp310-cp310-linux_x86_64.whl",
+      "sha256": "2aa11a48f1b500669d1eda3f04f011ac568991843b42293a8e912c4e520acbde",
+      "bytes": 838342250
+    },
+    {
+      "name": "torch-scatter",
+      "version": "2.1.2+pt25cu118",
+      "file": "torch_scatter-2.1.2+pt25cu118-cp310-cp310-linux_x86_64.whl",
+      "sha256": "45a153f7863b5cba9515fb92ed987cf148fcf8ffcb53c91858c35aa9c99fc706",
+      "bytes": 10258136
+    },
+    {
+      "name": "torchvision",
+      "version": "0.20.0+cu118",
+      "file": "torchvision-0.20.0+cu118-cp310-cp310-linux_x86_64.whl",
+      "sha256": "fb9fc996379685d59148bf488c2c357f5e15da13c7039b4cc212df94f395f4e2",
+      "bytes": 6543951
+    },
+    {
+      "name": "tqdm",
+      "version": "4.67.1",
+      "file": "tqdm-4.67.1-py3-none-any.whl",
+      "sha256": "26445eca388f82e72884e0d580d5464cd801a3ea01e63e5601bdff9ba6a48de2",
+      "bytes": 78540
+    },
+    {
+      "name": "transformers",
+      "version": "4.52.4",
+      "file": "transformers-4.52.4-py3-none-any.whl",
+      "sha256": "203f5c19416d5877e36e88633943761719538a25d9775977a24fe77a1e5adfc7",
+      "bytes": 10460375
+    },
+    {
+      "name": "trimesh",
+      "version": "4.6.11",
+      "file": "trimesh-4.6.11-py3-none-any.whl",
+      "sha256": "81e372cedcef1313e7d59661dd573de313bfe76ca3834188510579f52d91dc61",
+      "bytes": 711711
+    },
+    {
+      "name": "triton",
+      "version": "3.1.0",
+      "file": "triton-3.1.0-cp310-cp310-manylinux_2_17_x86_64.whl",
+      "sha256": "6b0dd10a925263abbe9fa37dcde67a5e9b2383fc269fdf59f5657cac38c5d1d8",
+      "bytes": 209460013
+    },
+    {
+      "name": "typing-extensions",
+      "version": "4.13.2",
+      "file": "typing_extensions-4.13.2-py3-none-any.whl",
+      "sha256": "a439e7c04b49fec3e5d3e2beaa21755cadbbdc391694e28ccdd36ca4a1408f8c",
+      "bytes": 45806
+    },
+    {
+      "name": "tzdata",
+      "version": "2026.6",
+      "file": "tzdata-2026.6-py3-none-any.whl",
+      "sha256": "0a10eec6e13ef16b627fabed9a5f2ba61a62b1c67f327305f4e7e412a70b4aec",
+      "bytes": 348210
+    },
+    {
+      "name": "urllib3",
+      "version": "2.4.0",
+      "file": "urllib3-2.4.0-py3-none-any.whl",
+      "sha256": "4e16665048960a0900c702d4a66415956a584919c03361cac9f1df5c5dd7e813",
+      "bytes": 128680
+    },
+    {
+      "name": "wadler-lindig",
+      "version": "0.1.6",
+      "file": "wadler_lindig-0.1.6-py3-none-any.whl",
+      "sha256": "d707f63994c7d3e1e125e7fb7e196f4adb6f80f4a11beb955c6da937754026a3",
+      "bytes": 20483
+    },
+    {
+      "name": "wheel",
+      "version": "0.45.1",
+      "file": "wheel-0.45.1-py3-none-any.whl",
+      "sha256": "708e7481cc80179af0e556bbf0cc00b8444c7321e2700b8d8580231d13017248",
+      "bytes": 72494
+    },
+    {
+      "name": "x-transformers",
+      "version": "2.3.12",
+      "file": "x_transformers-2.3.12-py3-none-any.whl",
+      "sha256": "1d7a58962160bc16aed2b2fa7792f1cc8ed0f7f0ee437aa6a98d8421fd6af78d",
+      "bytes": 84001
+    }
+  ],
+  "packages": 90
+}

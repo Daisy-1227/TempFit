@@ -1,0 +1,11 @@
+{
+  "package": "x-transformers",
+  "version": "2.3.12",
+  "file": "x_transformers/x_transformers.py",
+  "wheel_sha256": "1d7a58962160bc16aed2b2fa7792f1cc8ed0f7f0ee437aa6a98d8421fd6af78d",
+  "original_sha256": "65f397ad94a2cb68e567cc1598374c4cb5b884063fa9f98f4075bdb76001c5ba",
+  "patched_sha256": "d21691639bb0556b217c4f9a5bba770846d32c0e4c83328696a976e74697f440",
+  "patch_sha256": "405918aa884f6a7713fcde25dfc3c3ddd41eaf443cc8d0ac578e835fa27d1e31",
+  "origin": "local runtime modifications; original author/commit not yet established",
+  "release_allowed": false
+}
