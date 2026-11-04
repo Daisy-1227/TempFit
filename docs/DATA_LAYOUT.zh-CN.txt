@@ -1,9 +1,0 @@
-数据布局
-
-场景名为PPPP-BBBB.json，模板名为primitive_0000至primitive_0075。
-每套数据保留train/svg、train/gt_update_size、test/svg、test/gt_update_size及primitive_mapping.json。
-训练清单2112项，验证清单official494共494项；场景划分没有因匿名化改变。
-清单含evaluation_seed_indices及preprocessing_seeds，确保改名后采样与AR种子稳定。
-原名称映射不分发。输入与GT同名，不通过公开文件名暴露原始来源。
-数据、模板、donor未包含在代码包内。下载后放置在data/industrycad/下；template-v1和legacy-v1为两个数据目录，resources/包含templates/、model_mapping.json、donor/和invalid_train.txt。YAML中的路径相对于配置文件解析。
-数据仅限研究；配套权重MIT，代码MIT不适用于数据。

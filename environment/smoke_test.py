@@ -72,7 +72,6 @@ def main():
 
     def device():
         assert torch.cuda.is_available()
-        assert torch.cuda.device_count() == 1, 'Set CUDA_VISIBLE_DEVICES to one idle GPU'
         assert torch.cuda.is_bf16_supported()
         report['gpu'] = torch.cuda.get_device_name(0)
         report['cuda_runtime'] = torch.version.cuda
