@@ -1,0 +1,48 @@
+TempFit 环境安装（Linux x86_64 / Python 3.10 / CUDA 11.8）
+
+分发地址：
+https://github.com/Daisy-1227/TempFit/releases/tag/env-cu118-py310-v1
+
+首次下载共 89 个依赖包，3,234,967,687 字节（约 3.23 GB / 3.01 GiB）。
+84 个依赖从官方 PyPI、PyTorch、PyG 地址获取；5 个定制或本地构建包由本项目 Release 提供，合计 71,487,521 字节。
+DOWNLOAD_MANIFEST.json 固定每个文件的下载地址、大小与 SHA256。
+这些包与已验证环境中的依赖字节一致；历史项目源码 wheel 不属于依赖，不分发、不安装。
+第三方依赖保留各自许可证，见 licenses/ 与 DEPENDENCY_NOTICES.json；项目 MIT 不替代第三方条款。
+
+前提：
+- Linux x86_64，Python 3.10（带 venv/ensurepip），可用的 NVIDIA GPU 驱动。
+- 当前环境验收要求一张支持 BF16 的 CUDA GPU。设置 CUDA_VISIBLE_DEVICES 选择空闲卡。
+- 不要求在系统中安装完整 CUDA Toolkit；wheel 内含当前运行所需的 CUDA 库。
+- FlashAttention 是面向当前项目路径的构建：不支持 dropout、ALiBi、softcap、local window；保留 backward 和 uneven head dimension。
+- 不适用于 Windows 原生、macOS、ARM 或其他 Python 主次版本。
+- 部分预编译依赖需要 glibc 2.28 或更新版本。
+- Cislab 实测新环境约6.4 GiB，加上依赖缓存约9.4 GiB；建议预留15 GB磁盘空间。
+
+从已克隆代码仓库安装：
+
+  export CUDA_VISIBLE_DEVICES=0
+  PYTHON=python3.10 bash environment/install.sh "$HOME/venvs/tempfit"
+
+若 python3.10 不在 PATH，可把 PYTHON 设置为其绝对路径。
+安装脚本不会覆盖已有目标目录；失败后的目标目录应先检查日志，再换一个新目录重试。
+自动下载缓存默认在 ${XDG_CACHE_HOME:-$HOME/.cache}/tempfit/env-cu118-py310-v1。
+已完整下载且哈希正确的 wheel 会复用；失败文件最多重试三次，重新下载该文件，不进行字节级断点续传。
+
+也可以单独下载、搬运到离线机器后安装：
+
+  python3 environment/download.py --destination /path/to/wheelhouse
+  PYTHON=python3.10 bash environment/install.sh "$HOME/venvs/tempfit" /path/to/wheelhouse
+
+显式提供 wheelhouse 时，安装阶段禁止访问包索引；pip 按 requirements.txt 再次校验哈希。
+安装后自动应用有修改前后 SHA256 保护的 x-transformers 2.3.12 补丁，然后运行 pip check 和 GPU 验收。
+若仅需安装环境，可下载 Release 中 tempfit-environment-cu118-py310-v1.tar.gz：
+先对照同 Release 的 SHA256SUMS.txt 校验，再解压并进入 tempfit-environment/，执行上述安装命令。
+这个小包只含环境脚本、清单和许可证，不含项目源码、数据集或模型权重。
+
+验收结果：新环境目录内的 ENVIRONMENT_CHECK.json。
+验收内容：隔离环境及全部固定版本、依赖导入、BF16 优化器更新、FlashAttention/torch-scatter/spconv/PyTorch3D 的 CUDA 前向反向，
+以及补丁版 PrefixDecoder 的 memory KV、cross-attention bias 梯度和不同前缀长度的合成推理。
+这些检查不代表完整模型训练、数据加载、AR 指标或 PQ 已重新验收。
+
+当前继续使用已验证的 x-transformers 2.3.12 加补丁。
+上游 PR 411、412 的合入不会触发自动升级；升级需要另行做模型兼容性验证。

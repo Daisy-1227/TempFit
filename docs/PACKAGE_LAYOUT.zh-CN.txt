@@ -1,4 +1,4 @@
-待上传目录布局（2026-11-02）
+代码仓库布局（2026-11-04）
 
 根目录仅包含train.py、inference.py、evaluate.py三个文件；原审查包的全部子文件夹保留。
 README和原审查包根目录的审查说明、历史清单不纳入本目录。
@@ -7,12 +7,13 @@ README和原审查包根目录的审查说明、历史清单不纳入本目录�
 项目MIT许可证：licenses/PROJECT_LICENSE.txt。
 第三方声明：licenses/THIRD_PARTY_NOTICES.md。
 
-安装：bash environment/install.sh /absolute/path/to/new-env /absolute/path/to/wheelhouse
+安装：PYTHON=python3.10 bash environment/install.sh /absolute/path/to/new-env
+离线安装：PYTHON=python3.10 bash environment/install.sh /absolute/path/to/new-env /absolute/path/to/wheelhouse
 训练：python train.py --config configs/train.yaml --output_dir outputs/train
 推理：python inference.py --config configs/inference.yaml --checkpoint /path/to/model.safetensors --output_dir outputs/ar
 评估：python evaluate.py --config configs/inference.yaml --predictions outputs/ar --output_dir outputs/evaluation
-数据、模板、donor、权重和外部wheelhouse均未包含；实际运行需另行提供。
+数据、模板、donor和权重均未包含；实际运行需另行提供。环境依赖从固定下载清单获取，详见environment/INSTALL.zh-CN.txt。
 
 源码指纹仍覆盖三个入口和models/datasets/evaluation/util内全部Python文件，包括迁移后的引擎。
 不绕过恢复校验，旧目录布局保存的完整训练状态仍会因源码指纹不同而拒绝恢复。
-本目录为本地待上传文件集合，不表示已上传或已完成第三方许可审查。
+代码仓库：https://github.com/Daisy-1227/TempFit。第三方依赖的版权和许可见licenses/与environment/licenses/。

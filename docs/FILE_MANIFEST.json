@@ -195,18 +195,18 @@
     },
     {
       "path": "docs/ENVIRONMENT.zh-CN.txt",
-      "bytes": 995,
-      "sha256": "e9bb7656bb96a555412f5af3aa66e81bcfd66e49e927bf2dea8e992f15745a0d"
+      "bytes": 1464,
+      "sha256": "9abc3a9b513cd5b9aa1cd7c81a493400e698f47f926ca0b2eef9bcdc62978784"
     },
     {
       "path": "docs/PACKAGE_CHECKS.json",
-      "bytes": 530,
-      "sha256": "82a451466a702c03ee9d9a3e5fce635d70bbda01cbd68a8f10aa495579aaa733"
+      "bytes": 700,
+      "sha256": "0aea26af1b608776013404be78f7bffaf9b1a5d3288eeb426308716a17d2d051"
     },
     {
       "path": "docs/PACKAGE_LAYOUT.zh-CN.txt",
-      "bytes": 1348,
-      "sha256": "03b2a8b57762d554f8ab1bdcdf33eca714b64c25fbb10602e406ddea0f7129b9"
+      "bytes": 1542,
+      "sha256": "27f61d03dccfe7f177c64ef4950badcb11ddc4f8cca59a7f3d65a40c7948bf56"
     },
     {
       "path": "docs/RELEASE_POLICY.zh-CN.txt",
@@ -219,9 +219,24 @@
       "sha256": "7e492765e9bfcd8e6500efb3eea5c7fb930f157f17e6c6c6a4ad0dc8a9cbdab9"
     },
     {
+      "path": "environment/DOWNLOAD_MANIFEST.json",
+      "bytes": 38585,
+      "sha256": "c1246f08bcb696ab6f9f0d5d92eca58572c8733700a3a2af7e89937dd9a3f6d5"
+    },
+    {
+      "path": "environment/INSTALL.zh-CN.txt",
+      "bytes": 3332,
+      "sha256": "f3ed1933019269a0e6a7b20e6e0c03d0df440619b900a4432c5fa1885b44233b"
+    },
+    {
+      "path": "environment/VALIDATION.json",
+      "bytes": 2621,
+      "sha256": "ad9bdb397f04c750c6f9c35d3e2bdfe98bd42ba95b0d6d0cb838999664ea12a2"
+    },
+    {
       "path": "environment/WHEEL_MANIFEST.json",
-      "bytes": 21282,
-      "sha256": "499fe362b2a8ba0aa0d45c5bd2fb1616e88fe4893a5672b29bb45972855aebab"
+      "bytes": 21026,
+      "sha256": "047759f838aa93ef6e34d3bdeb38c84ac2479a4245ec8a7c7d71ca7ad47fdcca"
     },
     {
       "path": "environment/apply_patch.py",
@@ -229,9 +244,14 @@
       "sha256": "ed152e489ca240bbb46de1c1f36d73119ae7307e6c563d42d4840ecdc977f6ee"
     },
     {
+      "path": "environment/download.py",
+      "bytes": 4106,
+      "sha256": "cc71cb239a4a36b2f7d4039cf4a52ca66028b4ac71078940f7aa4928b8b97aa7"
+    },
+    {
       "path": "environment/install.sh",
-      "bytes": 878,
-      "sha256": "d759f7230bfd98dcbefd3496e76c9ed82c2ba7967628ac7b97f4dc160f795ea2"
+      "bytes": 1087,
+      "sha256": "ccb1282e50017412f2e154ae679040442650bf0a26aa040cb55c3bf0542c0bb6"
     },
     {
       "path": "environment/licenses/Jinja2/licenses/LICENSE.txt",
@@ -685,8 +705,8 @@
     },
     {
       "path": "environment/patches/x-transformers-2.3.12.json",
-      "bytes": 567,
-      "sha256": "f285baf476a6df20b877b0d638827c10ef0f08d8a72b63846a3faf85f182d7aa"
+      "bytes": 757,
+      "sha256": "20600491491630b5b304e5d4e2808272d730b45fdc32119a0d175628ab692aa9"
     },
     {
       "path": "environment/patches/x-transformers-2.3.12.patch",
@@ -697,6 +717,16 @@
       "path": "environment/requirements.txt",
       "bytes": 8889,
       "sha256": "3c39606b32e2adafbf8b0f7826b1900b6336610b37eb7d9144712074656438e1"
+    },
+    {
+      "path": "environment/smoke_test.py",
+      "bytes": 9185,
+      "sha256": "cda3e66b935bf77549130679113cdbb6567605bd6628a517f0c15e56ce2ad16d"
+    },
+    {
+      "path": "environment/test_download.py",
+      "bytes": 2913,
+      "sha256": "c6ff5295ebde4e9900dd0d45e590407c7bc5e2fff3a4fabedfcb2ffc93e0e0e3"
     },
     {
       "path": "evaluate.py",

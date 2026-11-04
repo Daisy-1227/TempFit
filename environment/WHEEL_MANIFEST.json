@@ -190,13 +190,6 @@
       "bytes": 70442
     },
     {
-      "name": "industrycad-candidate",
-      "version": "0.1.0.dev3",
-      "file": "industrycad_candidate-0.1.0.dev3-py3-none-any.whl",
-      "sha256": "e0dc42bedb4a79e4a043bcc80ad723cdd8a5603c12a180d405e6016af9346c57",
-      "bytes": 406718
-    },
-    {
       "name": "iopath",
       "version": "0.1.10",
       "file": "iopath-0.1.10-py3-none-any.whl",
@@ -631,5 +624,5 @@
       "bytes": 84001
     }
   ],
-  "packages": 90
+  "packages": 89
 }

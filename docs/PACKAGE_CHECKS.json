@@ -17,6 +17,8 @@
     "source_fingerprint_files": 112
   },
   "training_ar_pq_run": false,
-  "fresh_install_run": false,
-  "remote_upload_performed": false
+  "fresh_install_run": true,
+  "remote_upload_performed": true,
+  "environment_validation": "environment/VALIDATION.json",
+  "remote_upload_scope": "Initial source repository upload; environment release status is recorded separately."
 }
