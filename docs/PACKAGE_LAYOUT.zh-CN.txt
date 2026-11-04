@@ -12,7 +12,7 @@ README和原审查包根目录的审查说明、历史清单不纳入本目录�
 训练：python train.py --config configs/train.yaml --output_dir outputs/train
 推理：python inference.py --config configs/inference.yaml --checkpoint /path/to/model.safetensors --output_dir outputs/ar
 评估：python evaluate.py --config configs/inference.yaml --predictions outputs/ar --output_dir outputs/evaluation
-数据、模板、donor和权重均未包含；实际运行需另行提供。环境依赖从固定下载清单获取，详见environment/INSTALL.zh-CN.txt。
+数据、模板、donor和权重均未包含；实际运行需另行提供。环境依赖从固定下载清单获取，详见environment/INSTALL.txt。
 
 源码指纹仍覆盖三个入口和models/datasets/evaluation/util内全部Python文件，包括迁移后的引擎。
 不绕过恢复校验，旧目录布局保存的完整训练状态仍会因源码指纹不同而拒绝恢复。

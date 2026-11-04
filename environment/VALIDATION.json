@@ -1,110 +1,305 @@
 {
   "date": "2026-11-04",
   "passed": true,
-  "platform": "Linux x86_64",
-  "python_version": "3.10.22",
-  "torch_version": "2.5.0+cu118",
-  "cuda_runtime": "11.8",
-  "gpu": "NVIDIA RTX 6000 Ada Generation",
-  "new_isolated_venv": true,
-  "system_site_packages": false,
-  "installer_exit_code": 0,
-  "pinned_dependency_count": 89,
-  "wheel_source": "Hash-checked dependency cache; official downloads were partially exercised before cache transfer to reduce network wait.",
-  "official_url_checks": {
-    "passed": true,
-    "count": 84,
-    "method": "HEAD: HTTP 200 and expected content length; not 84 complete byte downloads."
-  },
-  "downloader_tests_passed": 7,
-  "checks": [
+  "scope": "Dependency imports, pinned versions and synthetic CUDA forward/backward.",
+  "environments": [
     {
-      "name": "isolated_pinned_dependencies",
-      "passed": true
+      "environment_type": "conda",
+      "passed": true,
+      "fresh_install": true,
+      "python_version": "3.10.22",
+      "gpu": "NVIDIA RTX 6000 Ada Generation",
+      "cuda": "11.8",
+      "checks": [
+        {
+          "name": "isolated_pinned_dependencies",
+          "passed": true
+        },
+        {
+          "name": "import:numpy",
+          "passed": true
+        },
+        {
+          "name": "import:scipy",
+          "passed": true
+        },
+        {
+          "name": "import:yaml",
+          "passed": true
+        },
+        {
+          "name": "import:torch",
+          "passed": true
+        },
+        {
+          "name": "import:torchvision",
+          "passed": true
+        },
+        {
+          "name": "import:accelerate",
+          "passed": true
+        },
+        {
+          "name": "import:x_transformers",
+          "passed": true
+        },
+        {
+          "name": "import:gateloop_transformer",
+          "passed": true
+        },
+        {
+          "name": "import:spconv.pytorch",
+          "passed": true
+        },
+        {
+          "name": "import:torch_scatter",
+          "passed": true
+        },
+        {
+          "name": "import:pytorch3d",
+          "passed": true
+        },
+        {
+          "name": "import:flash_attn",
+          "passed": true
+        },
+        {
+          "name": "cuda_device",
+          "passed": true
+        },
+        {
+          "name": "bf16_optimizer_step",
+          "passed": true
+        },
+        {
+          "name": "flash_attention_backward",
+          "passed": true
+        },
+        {
+          "name": "scatter_cuda_backward",
+          "passed": true
+        },
+        {
+          "name": "sparse_convolution_backward",
+          "passed": true
+        },
+        {
+          "name": "pytorch3d_knn_backward",
+          "passed": true
+        },
+        {
+          "name": "patched_prefix_decoder_bias_backward",
+          "passed": true
+        }
+      ],
+      "peak_gpu_memory_bytes": 20829184
     },
     {
-      "name": "import:numpy",
-      "passed": true
-    },
-    {
-      "name": "import:scipy",
-      "passed": true
-    },
-    {
-      "name": "import:yaml",
-      "passed": true
-    },
-    {
-      "name": "import:torch",
-      "passed": true
-    },
-    {
-      "name": "import:torchvision",
-      "passed": true
-    },
-    {
-      "name": "import:accelerate",
-      "passed": true
-    },
-    {
-      "name": "import:x_transformers",
-      "passed": true
-    },
-    {
-      "name": "import:gateloop_transformer",
-      "passed": true
-    },
-    {
-      "name": "import:spconv.pytorch",
-      "passed": true
-    },
-    {
-      "name": "import:torch_scatter",
-      "passed": true
-    },
-    {
-      "name": "import:pytorch3d",
-      "passed": true
-    },
-    {
-      "name": "import:flash_attn",
-      "passed": true
-    },
-    {
-      "name": "cuda_device",
-      "passed": true
-    },
-    {
-      "name": "bf16_optimizer_step",
-      "passed": true
-    },
-    {
-      "name": "flash_attention_backward",
-      "passed": true
-    },
-    {
-      "name": "scatter_cuda_backward",
-      "passed": true
-    },
-    {
-      "name": "sparse_convolution_backward",
-      "passed": true
-    },
-    {
-      "name": "pytorch3d_knn_backward",
-      "passed": true
-    },
-    {
-      "name": "patched_prefix_decoder_bias_backward",
-      "passed": true
+      "environment_type": "venv",
+      "passed": true,
+      "fresh_install": false,
+      "python_version": "3.10.22",
+      "gpu": "NVIDIA RTX 6000 Ada Generation",
+      "cuda": "11.8",
+      "checks": [
+        {
+          "name": "isolated_pinned_dependencies",
+          "passed": true
+        },
+        {
+          "name": "import:numpy",
+          "passed": true
+        },
+        {
+          "name": "import:scipy",
+          "passed": true
+        },
+        {
+          "name": "import:yaml",
+          "passed": true
+        },
+        {
+          "name": "import:torch",
+          "passed": true
+        },
+        {
+          "name": "import:torchvision",
+          "passed": true
+        },
+        {
+          "name": "import:accelerate",
+          "passed": true
+        },
+        {
+          "name": "import:x_transformers",
+          "passed": true
+        },
+        {
+          "name": "import:gateloop_transformer",
+          "passed": true
+        },
+        {
+          "name": "import:spconv.pytorch",
+          "passed": true
+        },
+        {
+          "name": "import:torch_scatter",
+          "passed": true
+        },
+        {
+          "name": "import:pytorch3d",
+          "passed": true
+        },
+        {
+          "name": "import:flash_attn",
+          "passed": true
+        },
+        {
+          "name": "cuda_device",
+          "passed": true
+        },
+        {
+          "name": "bf16_optimizer_step",
+          "passed": true
+        },
+        {
+          "name": "flash_attention_backward",
+          "passed": true
+        },
+        {
+          "name": "scatter_cuda_backward",
+          "passed": true
+        },
+        {
+          "name": "sparse_convolution_backward",
+          "passed": true
+        },
+        {
+          "name": "pytorch3d_knn_backward",
+          "passed": true
+        },
+        {
+          "name": "patched_prefix_decoder_bias_backward",
+          "passed": true
+        }
+      ],
+      "peak_gpu_memory_bytes": 20829184
     }
   ],
-  "selector_logits_gradient_norm": 0.024426957592368126,
-  "peak_gpu_memory_bytes": 20829184,
-  "full_project_source_copied": false,
-  "data_or_weights_copied": false,
-  "full_model_training_ar_pq_tested": false,
-  "scope": "Dependency APIs and synthetic CUDA forward/backward only; not full TempFit training/AR/PQ.",
-  "smoke_test_sha256": "cda3e66b935bf77549130679113cdbb6567605bd6628a517f0c15e56ce2ad16d",
-  "install_script_sha256": "ccb1282e50017412f2e154ae679040442650bf0a26aa040cb55c3bf0542c0bb6"
+  "conda_distribution_tested": "Miniforge 26.9.4-1",
+  "installer_exit_code": 0,
+  "dependency_source": "Previously verified wheel cache",
+  "pinned_dependency_count": 89,
+  "install_script_sha256": "724323c6381893441af20e93a679fb8ea5ba6a6285886d102073e0bcf92afd5d",
+  "smoke_test_sha256": "82192bb59a6f93b78142b1306c225f521cd9d252c57c46621f5bb835faff3968",
+  "original_v1_acceptance": {
+    "date": "2026-11-04",
+    "passed": true,
+    "platform": "Linux x86_64",
+    "python_version": "3.10.22",
+    "torch_version": "2.5.0+cu118",
+    "cuda_runtime": "11.8",
+    "gpu": "NVIDIA RTX 6000 Ada Generation",
+    "new_isolated_venv": true,
+    "system_site_packages": false,
+    "installer_exit_code": 0,
+    "pinned_dependency_count": 89,
+    "wheel_source": "Hash-checked dependency cache; official downloads were partially exercised before cache transfer to reduce network wait.",
+    "official_url_checks": {
+      "passed": true,
+      "count": 84,
+      "method": "HEAD: HTTP 200 and expected content length; not 84 complete byte downloads."
+    },
+    "downloader_tests_passed": 7,
+    "checks": [
+      {
+        "name": "isolated_pinned_dependencies",
+        "passed": true
+      },
+      {
+        "name": "import:numpy",
+        "passed": true
+      },
+      {
+        "name": "import:scipy",
+        "passed": true
+      },
+      {
+        "name": "import:yaml",
+        "passed": true
+      },
+      {
+        "name": "import:torch",
+        "passed": true
+      },
+      {
+        "name": "import:torchvision",
+        "passed": true
+      },
+      {
+        "name": "import:accelerate",
+        "passed": true
+      },
+      {
+        "name": "import:x_transformers",
+        "passed": true
+      },
+      {
+        "name": "import:gateloop_transformer",
+        "passed": true
+      },
+      {
+        "name": "import:spconv.pytorch",
+        "passed": true
+      },
+      {
+        "name": "import:torch_scatter",
+        "passed": true
+      },
+      {
+        "name": "import:pytorch3d",
+        "passed": true
+      },
+      {
+        "name": "import:flash_attn",
+        "passed": true
+      },
+      {
+        "name": "cuda_device",
+        "passed": true
+      },
+      {
+        "name": "bf16_optimizer_step",
+        "passed": true
+      },
+      {
+        "name": "flash_attention_backward",
+        "passed": true
+      },
+      {
+        "name": "scatter_cuda_backward",
+        "passed": true
+      },
+      {
+        "name": "sparse_convolution_backward",
+        "passed": true
+      },
+      {
+        "name": "pytorch3d_knn_backward",
+        "passed": true
+      },
+      {
+        "name": "patched_prefix_decoder_bias_backward",
+        "passed": true
+      }
+    ],
+    "selector_logits_gradient_norm": 0.024426957592368126,
+    "peak_gpu_memory_bytes": 20829184,
+    "full_project_source_copied": false,
+    "data_or_weights_copied": false,
+    "full_model_training_ar_pq_tested": false,
+    "scope": "Dependency APIs and synthetic CUDA forward/backward only; not full TempFit training/AR/PQ.",
+    "smoke_test_sha256": "cda3e66b935bf77549130679113cdbb6567605bd6628a517f0c15e56ce2ad16d",
+    "install_script_sha256": "ccb1282e50017412f2e154ae679040442650bf0a26aa040cb55c3bf0542c0bb6"
+  }
 }

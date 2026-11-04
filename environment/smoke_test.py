@@ -3,6 +3,7 @@ import hashlib
 import importlib
 import importlib.metadata
 import json
+import os
 from pathlib import Path
 import platform
 import subprocess
@@ -33,9 +34,15 @@ def main():
 
     def versions():
         assert sys.version_info[:2] == (3, 10), 'Python 3.10 required'
-        assert sys.prefix != sys.base_prefix, 'Run in a dedicated virtual environment'
-        config = Path(sys.prefix, 'pyvenv.cfg').read_text().lower()
-        assert 'include-system-site-packages = false' in config
+        prefix = Path(sys.prefix).resolve()
+        if (prefix / 'conda-meta').is_dir():
+            assert Path(os.environ.get('CONDA_PREFIX', '')).resolve() == prefix, 'Activate this Conda environment'
+            report['environment_type'] = 'conda'
+        else:
+            assert sys.prefix != sys.base_prefix, 'Run in a dedicated virtual environment'
+            config = (prefix / 'pyvenv.cfg').read_text().lower()
+            assert 'include-system-site-packages = false' in config
+            report['environment_type'] = 'venv'
         actual = {}
         for entry in json.loads((root / 'DOWNLOAD_MANIFEST.json').read_text())['files']:
             version = importlib.metadata.version(entry['name'])

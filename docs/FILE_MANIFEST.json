@@ -195,8 +195,8 @@
     },
     {
       "path": "docs/ENVIRONMENT.zh-CN.txt",
-      "bytes": 1464,
-      "sha256": "9abc3a9b513cd5b9aa1cd7c81a493400e698f47f926ca0b2eef9bcdc62978784"
+      "bytes": 1473,
+      "sha256": "5d054ed308d925d1ecf31f15c8d156f77439138796005be1e84cceaf08dca136"
     },
     {
       "path": "docs/PACKAGE_CHECKS.json",
@@ -205,8 +205,8 @@
     },
     {
       "path": "docs/PACKAGE_LAYOUT.zh-CN.txt",
-      "bytes": 1542,
-      "sha256": "27f61d03dccfe7f177c64ef4950badcb11ddc4f8cca59a7f3d65a40c7948bf56"
+      "bytes": 1536,
+      "sha256": "56deb24faa4f7eee44a516c9957a3da71a7f4937cd7eb702533c1dd180bc883d"
     },
     {
       "path": "docs/RELEASE_POLICY.zh-CN.txt",
@@ -224,14 +224,14 @@
       "sha256": "c1246f08bcb696ab6f9f0d5d92eca58572c8733700a3a2af7e89937dd9a3f6d5"
     },
     {
-      "path": "environment/INSTALL.zh-CN.txt",
-      "bytes": 3332,
-      "sha256": "f3ed1933019269a0e6a7b20e6e0c03d0df440619b900a4432c5fa1885b44233b"
+      "path": "environment/INSTALL.txt",
+      "bytes": 2510,
+      "sha256": "7cf32bbc33c0eed1d0d29036cfe5c301ba561444673ff1820da3a0f93e47a308"
     },
     {
       "path": "environment/VALIDATION.json",
-      "bytes": 2621,
-      "sha256": "ad9bdb397f04c750c6f9c35d3e2bdfe98bd42ba95b0d6d0cb838999664ea12a2"
+      "bytes": 7424,
+      "sha256": "8c48991c000e4b0c93d4dcfbf0c05d8efc2d29ec00b30f18219e44581e07972e"
     },
     {
       "path": "environment/WHEEL_MANIFEST.json",
@@ -250,8 +250,8 @@
     },
     {
       "path": "environment/install.sh",
-      "bytes": 1087,
-      "sha256": "ccb1282e50017412f2e154ae679040442650bf0a26aa040cb55c3bf0542c0bb6"
+      "bytes": 1582,
+      "sha256": "724323c6381893441af20e93a679fb8ea5ba6a6285886d102073e0bcf92afd5d"
     },
     {
       "path": "environment/licenses/Jinja2/licenses/LICENSE.txt",
@@ -720,8 +720,8 @@
     },
     {
       "path": "environment/smoke_test.py",
-      "bytes": 9185,
-      "sha256": "cda3e66b935bf77549130679113cdbb6567605bd6628a517f0c15e56ce2ad16d"
+      "bytes": 9515,
+      "sha256": "82192bb59a6f93b78142b1306c225f521cd9d252c57c46621f5bb835faff3968"
     },
     {
       "path": "environment/test_download.py",

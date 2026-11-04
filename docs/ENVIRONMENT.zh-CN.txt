@@ -1,7 +1,7 @@
 环境与外部依赖
 
 Linux/WSL x86_64，Python3.10，CUDA11.8；environment/requirements.txt固定版本及SHA256。
-安装步骤见environment/INSTALL.zh-CN.txt。安装脚本支持自动下载，也可显式提供离线wheelhouse。
+安装步骤见environment/INSTALL.txt（英文）。支持Conda环境和venv，自动下载或显式提供离线wheelhouse。
 首次下载89个依赖包，总计3,234,967,687字节；所有文件均按大小和SHA256校验。
 84个依赖直接从官方地址下载，5个包从TempFit环境Release下载，合计71,487,521字节。
 公开分发地址：https://github.com/Daisy-1227/TempFit/releases/tag/env-cu118-py310-v1
