@@ -27,6 +27,7 @@ from datasets.vec_data.industrycad.dataclass_define import VecData, VecDataTrans
 
 # from .vec_data.floorplancad.dataclass_define import SVGData
 from datasets.dataclass import SVGData
+from datasets.assets import template_id
 from typing import Dict, Any
 from datasets.transform_utils import (
     to_tensor,
@@ -621,7 +622,7 @@ class PrimitiveDataset(Dataset):
         self._cache_dir_root = cache_dir if cache_dir is not None else gt_dir
         self._demo_per_file_split = None
 
-        _gt_subdir = "gt_update_size" if self.return_size else "gt"
+        _gt_subdir = "gt"
 
         def _filenames_for_split(sp: str):
             _svg = os.path.join(svg_dir, sp, "svg")
@@ -654,10 +655,7 @@ class PrimitiveDataset(Dataset):
 
         # self.svg_dir = f"{svg_dir}/{split}/svg_instance_lines"
         self.svg_dir = f"{svg_dir}/{split}/svg"
-        if self.return_size:
-            self.gt_dir = f"{gt_dir}/{split}/gt_update_size"
-        else:
-            self.gt_dir = f"{gt_dir}/{split}/gt"
+        self.gt_dir = f"{gt_dir}/{split}/gt"
         self.use_cache_pkl = use_cache_pkl
         if cache_dir is not None:
             self.cache_dir = f"{cache_dir}/{split}/cache_pkl"
@@ -828,6 +826,10 @@ class PrimitiveDataset(Dataset):
             primitive_mapping = json.load(f)
         primitive_to_semantic = primitive_mapping["primitive_id2semantic_id"]
         self.primitive_to_semantic = primitive_to_semantic  # 保存供后续使用
+        for template_id, template in self.primitive_lib.items():
+            template["sem_ids"] = np.full_like(
+                template["sem_ids"], int(primitive_to_semantic[str(template_id)])
+            )
 
         if self.transform is not None:
             self.transform.import_primitive_lib(
@@ -914,8 +916,7 @@ class PrimitiveDataset(Dataset):
             if getattr(self, "no_color_layer", False):
                 colors_arr = np.zeros_like(colors_arr)
                 layer_ids_arr = np.zeros_like(layer_ids_arr)
-                # Defensive: zero any color-like channels in feats if the slice
-                # is later changed to keep them (current pipeline keeps 7).
+                # Zero color channels when they are included in the feature array.
                 if feats_np.shape[-1] > 7:
                     feats_np = feats_np.copy()
                     feats_np[..., 7:] = 0.0
@@ -1833,7 +1834,7 @@ class PrimitiveDataset(Dataset):
         data_file = self.data_filename[idx % len(self.data_filename)]
         if self.demo and self._demo_per_file_split is not None:
             sp_item = self._demo_per_file_split[idx % len(self.data_filename)]
-            gt_sub_item = "gt_update_size" if self.return_size else "gt"
+            gt_sub_item = "gt"
             svg_dir_item = os.path.join(self._svg_dir_root, sp_item, "svg")
             gt_dir_item = os.path.join(self._gt_dir_root, sp_item, gt_sub_item)
             cache_dir_item = os.path.join(self._cache_dir_root, sp_item, "cache_pkl")
@@ -1891,14 +1892,14 @@ class PrimitiveDataset(Dataset):
         for primitive in primitives:
             primitive_sem_id.append(np.array(primitive["semantic_id"], dtype=np.int32))
             primitive_prim_id.append(
-                np.array(primitive["primitive_id"], dtype=np.int32)
+                np.array(template_id(primitive), dtype=np.int32)
             )
             primitive_scale.append(np.array(primitive["scale"], dtype=np.float32))
             primitive_rotation.append(np.array(primitive["rotate"], dtype=np.float32))
             primitive_translate.append(
                 np.array(primitive["translation"], dtype=np.float32)
             )
-            if primitive["primitive_id"] in self.flip_invariant_primitive_id:
+            if template_id(primitive) in self.flip_invariant_primitive_id:
                 primitive_flip_invariant.append(True)
                 assert (
                     primitive["flip"] == 0
@@ -1974,7 +1975,6 @@ class PrimitiveDataset(Dataset):
         if getattr(self, "no_color_layer", False):
             svg_data.colors = np.zeros_like(np.asarray(svg_data.colors))
             svg_data.layer_ids = np.zeros_like(np.asarray(svg_data.layer_ids))
-        # svg_data.semantic_ids = [x + 1 for x in svg_data.semantic_ids if x != -1]
         ## io测试1:数据读取 ##
         t_io1_end = time.perf_counter()
 

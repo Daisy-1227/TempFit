@@ -11,13 +11,13 @@ def run(stage_a, templates, manifest, output):
     dest = Path(output)
     names = read(manifest)
     if isinstance(names, dict):
-        names = names.get("filenames", names.get("val"))
+        names = names.get("filenames", names.get("test"))
     if not names or len(set(names)) != len(names):
         raise ValueError("Explicit unique scene manifest required")
     files = [src / (Path(n).stem + ".npz") for n in names]
     if any(not p.is_file() for p in files):
         raise FileNotFoundError(
-            "Manifest prediction missing; refusing silent subset evaluation"
+            "Prediction files are missing for the requested manifest"
         )
     if dest.exists():
         raise FileExistsError(dest)
@@ -33,7 +33,8 @@ def run(stage_a, templates, manifest, output):
         bounded_pair_temporaries=200000,
         gt_attributes_used_for_projection=False,
         manifest_sha256=sha(manifest),
-        population="single population selected by explicit manifest; official494 is evaluated as one union",
+        population="test",
+        semantic_encoding="Stage-A scene_semantic_offset; legacy files default to 1",
     )
     save(dest / "PROTOCOL.json", protocol)
     try:

@@ -15,16 +15,15 @@ def evaluate_predictions(cfg, predictions_dir, output_dir, allow_partial=False):
     output = Path(output_dir).resolve()
     if output.exists():
         fail(f"Output already exists: {output}")
-    manifest = read(cfg["paths"]["manifest"])
+    expected = read(cfg["paths"]["test_manifest"])
     evaluated = read(source / "EVALUATED_MANIFEST.json")
-    if evaluated["source_manifest_sha256"] != sha(cfg["paths"]["manifest"]):
+    if evaluated["source_manifest_sha256"] != sha(cfg["paths"]["test_manifest"]):
         fail("Configuration manifest differs from the inference manifest")
     predictions = read(source / "predictions.json")
     names = [p["filename"] for p in predictions]
-    expected = manifest["val"]
     if not names or len(names) != len(set(names)) or not set(names) <= set(expected):
         fail(
-            "Predictions must be a nonempty, unique subset of the configured validation manifest"
+            "Predictions must be a nonempty, unique subset of the configured test manifest"
         )
     if names != evaluated["filenames"]:
         fail("Predictions disagree with EVALUATED_MANIFEST.json")
@@ -79,7 +78,7 @@ def evaluate_predictions(cfg, predictions_dir, output_dir, allow_partial=False):
         protocol="AR center gate 0.1; 256 support points; normalized symmetric CD < 0.03; identity requires semantic AND primitive",
         beta=original.get("beta"),
         ar=ar_summary(instances, predictions),
-        evaluation_mode="CPU rescore of saved predictions against exported GT; no inference or PQ",
+        evaluation_mode="AR scoring of saved predictions against exported GT",
     )
     output.mkdir(parents=True, exist_ok=False)
     save(output / "instances.json", instances)
@@ -89,7 +88,7 @@ def evaluate_predictions(cfg, predictions_dir, output_dir, allow_partial=False):
         output / "PROVENANCE.json",
         dict(
             predictions_sha256=sha(source / "predictions.json"),
-            source_manifest_sha256=sha(cfg["paths"]["manifest"]),
+            source_manifest_sha256=sha(cfg["paths"]["test_manifest"]),
             scorer_sha256=sha(Path(__file__).parent / "metrics.py"),
             geometry_sha256=sha(Path(__file__).parent / "geometry.py"),
             template_sha256={

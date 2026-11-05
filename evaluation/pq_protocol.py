@@ -55,7 +55,7 @@ def _new_evaluator(num_classes):
 
 
 def _derive_industry_gt_with_agv(stage_a_path, num_segments):
-    """Recover URC labels, including class-0 AGV, from Stage-A primitive metadata."""
+    """Recover zero-based instance labels from Stage-A primitive metadata."""
     stage_a = np.load(stage_a_path, allow_pickle=True)
     seg_prim = np.asarray(stage_a["scene_segment_primitive_ids"], dtype=np.int64)
     prim_sem = np.asarray(stage_a["scene_primitive_semantic_ids"], dtype=np.int32)
@@ -67,10 +67,9 @@ def _derive_industry_gt_with_agv(stage_a_path, num_segments):
     seg_inst = prim_inst[seg_prim]
     seg_sem = np.full(num_segments, -1, dtype=np.int32)
     foreground = seg_inst >= 0
-    # Cache convention: foreground URC semantic is stored with an offset of -1.
-    # Consequently AGV is -1 too, and can only be distinguished from background
-    # through the non-negative instance id.
-    seg_sem[foreground] = prim_sem[seg_prim[foreground]] + 1
+    # Older Stage-A files omit the offset and store class IDs minus one.
+    offset = int(stage_a.get("scene_semantic_offset", 1))
+    seg_sem[foreground] = prim_sem[seg_prim[foreground]] + offset
     instance_ids = np.unique(seg_inst[foreground])
     masks = np.zeros((instance_ids.size, num_segments), dtype=bool)
     labels = np.zeros(instance_ids.size, dtype=np.int32)

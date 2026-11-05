@@ -188,13 +188,8 @@ def _apply_clipping_with_inheritance(
         [pre_to_post[int(x)] for x in survivor_pre_clip], dtype=np.int64
     )
 
-    # Recompute cell keys on the post-clip coords. Must mirror VecGridSample
-    # byte-for-byte: representative_coord = float32 coord.mean(); then
-    # `coord / np.array(grid_size)` upcasts the divisor to float64 implicitly,
-    # so the division runs in float64. Forcing the division to float32 here
-    # caused near-cell-boundary lines to round into a different cell than the
-    # original gridsample run → `cell_to_npz` lookup misses with KeyError on
-    # ~5% of windows in the audited subset.
+    # Match VecGridSample: compute the mean in float32 and divide in float64
+    # so lines near cell boundaries map to the same grid cells.
     rep = post_clip_coords.mean(axis=1).astype(np.float32)
     gc = np.floor(rep / np.array(grid_size)).astype(np.int64)
     gc -= gc.min(0)
@@ -237,7 +232,7 @@ def load_window_global_full(
     """
     npz_path = os.path.join(npz_dir, f"{filename}.npz")
     cache_path = os.path.join(cache_dir, split, "cache_pkl", f"{filename}.pkl")
-    gt_path = os.path.join(gt_dir, split, "gt_update_size", f"{filename}.json")
+    gt_path = os.path.join(gt_dir, split, "gt", f"{filename}.json")
 
     npz = np.load(npz_path, allow_pickle=True)
     with open(cache_path, "rb") as f:
@@ -399,7 +394,7 @@ def load_window_global_gt_only(
     from datasets.vec_data.industrycad.dataclass_define import SVGData
 
     cache_path = os.path.join(cache_dir, split, "cache_pkl", f"{filename}.pkl")
-    gt_path = os.path.join(gt_dir, split, "gt_update_size", f"{filename}.json")
+    gt_path = os.path.join(gt_dir, split, "gt", f"{filename}.json")
     with open(cache_path, "rb") as f:
         cache = pickle.load(f)
     with open(gt_path, "r", encoding="utf-8") as f:
@@ -575,7 +570,7 @@ def load_window_global(
     """
     npz_path = os.path.join(npz_dir, f"{filename}.npz")
     cache_path = os.path.join(cache_dir, split, "cache_pkl", f"{filename}.pkl")
-    gt_path = os.path.join(gt_dir, split, "gt_update_size", f"{filename}.json")
+    gt_path = os.path.join(gt_dir, split, "gt", f"{filename}.json")
 
     npz = np.load(npz_path, allow_pickle=True)
     with open(cache_path, "rb") as f:
@@ -1033,9 +1028,7 @@ def stitch_instances(
             n_lines_g += len(node_lines[(w_idx, k)])
             all_lines |= node_lines[(w_idx, k)]
             wd = window_datas[w_idx]
-            # Defensive: some windows (proj_from_ins script edge case on
-            # train-split inference) have assign_inst values ≥ K_pred. Skip
-            # those contributors — same guard as in `dedup_lines`.
+            # Skip assignment IDs outside this window's prediction array.
             margin_arr = wd["interior_margin_per_pred"]
             sem_arr = wd["pred_instance_labels"]
             if k < 0 or k >= margin_arr.size or k >= sem_arr.size:

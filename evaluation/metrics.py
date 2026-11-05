@@ -70,7 +70,7 @@ class ARScorer:
 
     def score(self, pred, g):
         if pred["shape_key"] != "scale":
-            raise ValueError("Historical AR scorer requires scale predictions")
+            raise ValueError("AR scoring requires scale predictions")
         links = center_assignment(
             np.asarray(pred["translation"]).reshape(-1, 2),
             np.asarray(g["translation"]).reshape(-1, 2),

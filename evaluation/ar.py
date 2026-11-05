@@ -17,10 +17,9 @@ def evaluate(
     dest.mkdir(parents=True, exist_ok=False)
     ds = SceneDataset(cfg, "val")
     n = len(ds) if limit is None else min(limit, len(ds))
-    from util.io import read
     from evaluation.seeds import indices
 
-    seed_indices = indices(read(cfg["paths"]["manifest"]))
+    seed_indices = indices(ds.names)
     if n <= 0:
         raise ValueError("No validation scenes")
     device = next(raw.parameters()).device
@@ -110,7 +109,7 @@ def evaluate(
         dict(
             population=population,
             complete_population=n == len(ds),
-            source_manifest_sha256=sha(cfg["paths"]["manifest"]),
+            source_manifest_sha256=sha(cfg["paths"]["test_manifest"]),
             filenames=list(ds.names[:n]),
             seed_rule="train.seed + 100000 + per-scene seed_index",
             seed_indices={name: seed_indices[name] for name in ds.names[:n]},

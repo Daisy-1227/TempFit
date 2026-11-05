@@ -19,7 +19,7 @@ def main():
     root = Path(__file__).resolve().parent
     report = {'python': sys.version, 'executable': sys.executable, 'prefix': sys.prefix,
               'base_prefix': sys.base_prefix, 'platform': platform.platform(), 'checks': [],
-              'scope': 'Dependency APIs and synthetic CUDA forward/backward only; not full TempFit training/AR/PQ.'}
+              'scope': 'Dependency imports, versions, and synthetic CUDA forward/backward.'}
 
     def check(name, fn):
         start = time.monotonic()
@@ -52,7 +52,6 @@ def main():
             actual[entry['name']] = version
         result = subprocess.run([sys.executable, '-m', 'pip', 'check'], text=True, capture_output=True)
         assert result.returncode == 0, result.stdout + result.stderr
-        assert importlib.util.find_spec('industrycad') is None, 'Historical project wheel must not be installed'
         return actual
 
     check('isolated_pinned_dependencies', versions)

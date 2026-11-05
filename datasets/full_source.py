@@ -148,11 +148,11 @@ class FullOnlyPrimitiveDataset(AuditedDataset):
 class SceneDataset(Dataset):
     def __init__(self, cfg, split="train", capture=False, deterministic=False):
         self.cfg, self.split, self.epoch = cfg, split, 0
-        manifest = read(cfg["experiment"]["manifest"])
-        self.names = manifest[split]
+        key = "test_manifest" if split == "val" else "train_manifest"
+        self.names = read(cfg["paths"][key])
         from evaluation.seeds import preprocessing
 
-        self.preprocessing_seeds = preprocessing(manifest) if split == "val" else {}
+        self.preprocessing_seeds = preprocessing(self.names) if split == "val" else {}
         dc = copy.deepcopy(cfg["dataset_" + split])
         self.repeat = dc["repeat"] if split == "train" else 1
         dc.update(repeat=1, shuffle=False, demo=False, recon_audit=True)

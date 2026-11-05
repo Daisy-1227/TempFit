@@ -1,6 +1,6 @@
 def create_model(variant, model_config):
     if variant != "attr_decouple":
-        raise ValueError("Only the audited Industry attr_decouple model is supported")
+        raise ValueError("Supported model variant: attr_decouple")
     from models.primitive.primitive_transformer import PrimitiveTransformerDiscrete
 
     kwargs = dict(model_config)

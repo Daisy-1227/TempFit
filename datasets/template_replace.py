@@ -2,7 +2,7 @@ from pathlib import Path
 import math, json, shutil
 import numpy as np
 from util.io import read, save, sha
-from datasets.assets import scene_name, validate_scene
+from datasets.assets import scene_name, template_id, validate_scene
 
 
 def transform_lines(lines, flip, scale, rotation_deg, translation):
@@ -78,7 +78,7 @@ def replace_scene(raw, gt, templates, scene_bound=30000.0):
     for iid, g in enumerate(gt, 1):
         if not (ids == iid).any():
             raise ValueError("GT has no source instance")
-        t = templates(int(g["primitive_id"]))
+        t = templates(int(template_id(g)))
         pos = (
             np.asarray(g["translation"])
             + scene_bound / 2
@@ -96,7 +96,7 @@ def replace_scene(raw, gt, templates, scene_bound=30000.0):
         if err >= 1e-6:
             raise ValueError("Template extent differs from GT size")
         errors.append(err)
-        append(lines, t, np.ones(len(lines), bool), int(g["semantic_id"]) - 1, iid)
+        append(lines, t, np.ones(len(lines), bool), int(g["semantic_id"]), iid)
     a = {k: np.concatenate(v) for k, v in fields.items()}
     xy = a["coords"].reshape(-1, 2)
     lo = xy.min(0)
@@ -139,12 +139,12 @@ def generate(root, templates, manifest, output, scene_bound=30000.0):
 
     for i, name in enumerate(names):
         ip = root / "train/svg" / name
-        gp = root / "train/gt_update_size" / name
+        gp = root / "train/gt" / name
         result, stats = replace_scene(read(ip), read(gp), template, scene_bound)
         dst = out / "train/svg" / name
         dst.parent.mkdir(parents=True, exist_ok=True)
         dst.write_text(json.dumps(result, ensure_ascii=False, separators=(",", ":")))
-        gtout = out / "train/gt_update_size" / name
+        gtout = out / "train/gt" / name
         gtout.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(gp, gtout)
         rows.append(

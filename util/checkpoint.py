@@ -11,7 +11,7 @@ def rng_state():
         python=random.getstate(),
         numpy=np.random.get_state(),
         cpu=torch.get_rng_state(),
-        cuda=torch.cuda.get_rng_state(),
+        cuda=torch.cuda.get_rng_state() if torch.cuda.is_available() else None,
     )
 
 
@@ -19,7 +19,8 @@ def restore_rng(r):
     random.setstate(r["python"])
     np.random.set_state(r["numpy"])
     torch.set_rng_state(r["cpu"])
-    torch.cuda.set_rng_state(r["cuda"])
+    if r["cuda"] is not None:
+        torch.cuda.set_rng_state(r["cuda"])
 
 
 def object_digest(value):
@@ -56,7 +57,7 @@ def object_digest(value):
 
 def binding(cfg):
     assets = {}
-    for k in ("manifest", "primitive_mapping", "invalid_train"):
+    for k in ("train_manifest", "test_manifest", "primitive_mapping", "invalid_train"):
         assets[k] = sha(cfg["paths"][k])
     for k in ("template_root", "donor_bank"):
         if k == "donor_bank" and not cfg["paths"].get(k):
@@ -94,7 +95,8 @@ def atomic_pt(path, value):
 
 
 def write(
-    path, raw, optimizer, scheduler, step, epoch, offset, totals, identity, best=None
+    path, raw, optimizer, scheduler, step, epoch, offset, totals, identity, best=None,
+    rng_by_rank=None,
 ):
     payload = dict(
         format="industrycad-training-v2",
@@ -106,10 +108,12 @@ def write(
         epoch=epoch,
         micro_offset=offset,
         epoch_totals=list(totals),
-        rng=rng_state(),
+        rng=rng_state() if rng_by_rank is None else rng_by_rank[0],
         binding=identity,
         best_val=best,
     )
+    if rng_by_rank is not None:
+        payload.update(world_size=len(rng_by_rank), rng_by_rank=rng_by_rank)
     payload["state_digest"] = object_digest(
         {"model": payload["model"], "selector": payload["selector"]}
     )
@@ -147,11 +151,13 @@ def validate_resume_package(package, identity):
         raise ValueError("Resume requires matching configuration and assets")
 
 
-def restore_training(model, optimizer, scheduler, path, identity):
+def restore_training(model, optimizer, scheduler, path, identity, rank=0, world_size=1):
     from util.engine import TrainingState
 
     package = torch.load(path, map_location="cpu", weights_only=False, mmap=True)
     validate_resume_package(package, identity)
+    if package.get("world_size", 1) != world_size:
+        raise ValueError("Resume requires the checkpoint's training world size")
     model.model.load_state_dict(package["model"], strict=True)
     model.selector.load_state_dict(package["selector"], strict=True)
     optimizer.load_state_dict(package["optimizer"])
@@ -174,7 +180,10 @@ def restore_training(model, optimizer, scheduler, path, identity):
         totals=package["epoch_totals"],
         best=package["best_val"],
     )
-    return state, package["rng"]
+    rngs = package.get("rng_by_rank")
+    if rngs is not None and len(rngs) != world_size:
+        raise ValueError("Checkpoint RNG states do not match the training world size")
+    return state, package["rng"] if rngs is None else rngs[rank]
 
 
 def save_inference(path, model, epoch, step, identity):

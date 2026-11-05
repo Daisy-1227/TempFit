@@ -16,7 +16,7 @@ class SoftModel(nn.Module):
         self.model._lib_feats_cache_valid = False
 
     def counts(self, sample):
-        # Exact under the locked preclip_full / threshold=-1 / instance_mean configuration.
+        # Count instances for preclip_full reconstruction with instance_mean reduction.
         m = self.model
         assert (
             m.recon_partial_source_mode == "preclip_full"

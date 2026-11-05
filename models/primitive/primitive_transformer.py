@@ -49,7 +49,6 @@ try:
     from models.primitive.img_encoder import ImgConditioner
 except Exception:
     ImgConditioner = None
-from models.primitive.slot_attn import SlotAttentionEncoder
 
 from models.primitive.utils import (
     discretize,
@@ -1868,7 +1867,6 @@ class PrimitiveTransformerDiscrete(Module, PyTorchModelHubMixin):
         scene_bound=30000.0,
         keep_ratio=0.1,
         min_keep=50,
-        use_slot_attn=False,
         mask_guide=False,
         use_dense_feat=False,
         attn_hard_constraint=False,
@@ -1931,24 +1929,13 @@ class PrimitiveTransformerDiscrete(Module, PyTorchModelHubMixin):
         scale_log=False,
         ## factorized AR for 2-channel attrs (translation, size): P(y|h, x) instead of P(y|h)
         factorized_xy=False,
-        ## When True, zero out auxiliary "metadata" channels that the conditioner
-        ## currently uses:
-        ##   - layer_ids: normalized + concatenated as the 3rd coord channel in
-        ##                _get_data_dict (line mode). Zeroed → coord 3rd channel stays 0.
-        ##   - color (color_r/g/b): present at indices 7/8/9 of feats, but the
-        ##                          to_vec_data slice `feats[..., :7]` currently drops
-        ##                          them before they reach the model — so zeroing
-        ##                          here is defensive (no-op under the current 7-ch
-        ##                          slice; takes effect if a future change keeps them).
-        ## Default False = baseline. Use to ablate the model's reliance on these
-        ## auxiliary modalities.
+        # Zero the layer coordinate and any color features when enabled.
+        # The default seven-channel feature layout contains no color channels.
         no_color_layer=False,
         # PTv3 serialization grid size in normalized scene coordinates.  The
         # same value is used for scene and primitive-library conditioning.
         conditioner_grid_size: float = 0.01,
-        # Scale-label/reconstruction representation.  Defaults retain exact
-        # historical behavior.  Conditioner normalization is independent so
-        # N1 (label-only) and N2 (label + normalized conditioner) are separable.
+        # Scale representation and conditioner normalization are independent.
         scale_parameterization: str = "relative",
         normalize_primitive_conditioner: bool = False,
         # Some primitive preprocessing uses torch.randperm to build fixed
@@ -1956,8 +1943,7 @@ class PrimitiveTransformerDiscrete(Module, PyTorchModelHubMixin):
         # Isolating that RNG use makes random parameter initialization exactly
         # comparable when an ablation changes normalized library point counts.
         isolate_primitive_library_rng: bool = False,
-        # R0 full-instance reconstruction.  Defaults preserve all existing
-        # configurations; the loss is evaluated only when its weight is > 0.
+        # Reconstruction loss is evaluated when its weight is positive.
         recon_dense_template_limit: int = 256,
         recon_source_limit: int = 96,
         recon_support_threshold: float = 0.0025,
@@ -1972,16 +1958,13 @@ class PrimitiveTransformerDiscrete(Module, PyTorchModelHubMixin):
         recon_partial_min_support: int = 1,
         recon_relative_beta: float = 0.05,
         recon_use_gt_scale: bool = True,
-        # Tri-state scale ablation for reconstruction.  None preserves the
-        # historical recon_use_gt_scale boolean; explicit modes isolate the
-        # geometry-forward effect of predicted scale from its gradient effect.
+        # None uses recon_use_gt_scale; explicit modes control scale values
+        # and whether reconstruction gradients flow through predicted scale.
         recon_scale_mode: str | None = None,
-        # Optional partial-only override.  None preserves the historical
-        # behavior in which full and partial instances share scale_mode.
-        # pred_detach is the strict control for predicted partial geometry
-        # without a partial-scale reconstruction gradient.
+        # None shares scale_mode with full instances. pred_detach uses
+        # predicted partial geometry without a scale reconstruction gradient.
         recon_partial_scale_mode: str | None = None,
-        # visible: historical GT-clipped partial objective.
+        # visible: GT-clipped partial objective.
         # preclip_full: use the complete source captured immediately before
         # VecClipping and apply the same full-template objective as a full
         # instance.  The extra source is a loss-only target.
@@ -1997,15 +1980,13 @@ class PrimitiveTransformerDiscrete(Module, PyTorchModelHubMixin):
         # mean(full)+lambda*mean(partial) experimental reduction.
         recon_instance_reduction: str = "instance_mean",
         recon_rotation_anchor_weight: float = 0.05,
-        # Recon-only translation/rotation decoding.  soft_expectation keeps
-        # historical behavior; hard_st evaluates the forward geometry at the
-        # deterministic argmax bins used by formal AR inference.
+        # soft_expectation uses probability-weighted attributes; hard_st uses
+        # argmax bins for forward geometry with straight-through gradients.
         recon_decode_mode: str = "soft_expectation",
-        # Opt-in shared deterministic continuous decoder; legacy preserves old runs.
+        # Shared continuous decoding mode for auxiliary losses.
         continuous_decode_mode: str = "legacy",
-        # Strictly opt-in T/R factorization.  joint_bidir retains the exact
-        # historical path: one template transformed by pred T + pred R and a
-        # 0.5/0.5 bidirectional geometry loss.
+        # joint_bidir applies predicted translation and rotation to one template
+        # and equally weights the two geometry-loss directions.
         recon_tr_mode: str = "joint_bidir",
         # Used only by recon_tr_mode='factorized'.  Direction names are from
         # the anchor/source perspective and intentionally unambiguous.
@@ -2362,27 +2343,7 @@ class PrimitiveTransformerDiscrete(Module, PyTorchModelHubMixin):
                 nn.Linear(dim, dim),
             )
 
-        #### Add for slot attention
-        self.use_slot_attn = use_slot_attn
         self.mask_guide = mask_guide
-        if self.use_slot_attn:
-            num_iterations = 3
-            num_slots = 128  ####### 假设当前场景最多有128个instance
-            slot_size = dim
-            mlp_hidden_size = 1024
-            truncate = "none"
-            init_method = "shared_gaussian"
-            num_heads = 16
-            self.slot_attention_encoder = SlotAttentionEncoder(
-                num_iterations=num_iterations,
-                num_slots=num_slots,
-                input_channels=dim,
-                slot_size=slot_size,
-                mlp_hidden_size=mlp_hidden_size,
-                truncate=truncate,
-                init_method=init_method,
-                num_heads=num_heads,
-            )
 
         self.scene_bound = scene_bound
         self.keep_ratio = keep_ratio
@@ -4440,7 +4401,7 @@ class PrimitiveTransformerDiscrete(Module, PyTorchModelHubMixin):
         return {"cached_primitives": 0, "total_memory_mb": 0}
 
     def set_recon_epoch(self, epoch: int):
-        """Set the zero-based epoch used by the R0 reconstruction warmup."""
+        """Set the zero-based epoch used by reconstruction warmup."""
         self._recon_epoch = max(int(epoch), 0)
 
     def _discretize_rotation_phase(self, phase_degrees):
@@ -4537,8 +4498,7 @@ class PrimitiveTransformerDiscrete(Module, PyTorchModelHubMixin):
             return logits.softmax(dim=-1)
         if self.recon_decode_mode == "hard_st":
             return deterministic_st_argmax_onehot(logits)
-        # Constructor validation makes this unreachable in normal use.  Keep
-        # it defensive for lightweight harnesses and mutated model state.
+        # Validate the current mode before reporting an unsupported branch.
         validate_recon_decode_mode(self.recon_decode_mode)
         raise AssertionError("unreachable")
 
@@ -5178,9 +5138,7 @@ class PrimitiveTransformerDiscrete(Module, PyTorchModelHubMixin):
         beta = self.recon_relative_beta if distance_scale is not None else 0.01
 
         if recon_tr_mode == "joint_bidir":
-            # Keep this block operation-for-operation identical to the
-            # historical R2 implementation.  The new factorized behavior is
-            # strictly opt-in and must not perturb legacy loss bits/gradients.
+            # Joint translation and rotation reconstruction.
             pred_template = self._attr_recon_transform(
                 template,
                 selected_pred_scale,
@@ -5265,8 +5223,7 @@ class PrimitiveTransformerDiscrete(Module, PyTorchModelHubMixin):
                 "rotation_effective_count": zero.detach(),
             }
 
-        # The constructor validates this in ordinary use; retain a defensive
-        # check for lightweight harnesses that mutate attributes directly.
+        # Validate the current reconstruction mode.
         validate_recon_tr_mode(recon_tr_mode)
         rotation_direction = validate_recon_rotation_direction(
             getattr(self, "recon_rotation_direction", "bidirectional")
@@ -5824,11 +5781,7 @@ class PrimitiveTransformerDiscrete(Module, PyTorchModelHubMixin):
         sample_mode="line",
     ):
         # ─── no_color_layer ablation gate ───────────────────────────────────
-        # Defensive zeroing of color channels in `feats`. In the current 7-channel
-        # pipeline (`feats[..., :7]` slice in to_vec_data), there are no color
-        # columns to zero, so this branch is a no-op. If a future change keeps
-        # the full 10-channel feats `[length, dx, dy, cx, cy, pcx, pcy, c_r, c_g, c_b]`,
-        # this will mask out indices 7-9.
+        # Zero color features when present after the seven geometric channels.
         if getattr(self, "no_color_layer", False) and feats.shape[-1] > 7:
             feats = feats.clone()
             feats[..., 7:] = 0.0

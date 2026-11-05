@@ -12,7 +12,8 @@ def load(path):
         "data_root",
         "template_root",
         "primitive_mapping",
-        "manifest",
+        "train_manifest",
+        "test_manifest",
         "invalid_train",
     ]
     if any(
@@ -45,21 +46,21 @@ def load(path):
                 t["donor_bank"] = paths["donor_bank"]
     cfg["model"]["primitive_dir"] = paths["template_root"]
     cfg["model"]["primitive_mapping_path"] = paths["primitive_mapping"]
-    cfg["experiment"]["manifest"] = paths["manifest"]
-    m = read(paths["manifest"])
-    if not all(k in m and len(m[k]) == len(set(m[k])) for k in ["train", "val"]):
-        raise ValueError("manifest requires unique train/val filename lists")
-    from evaluation.seeds import indices, preprocessing
-
-    indices(m)
-    preprocessing(m)
-    if cfg["distributed"]["world_size"] != 1:
-        raise ValueError("Only single GPU execution is supported")
+    for key in ("train_manifest", "test_manifest"):
+        names = read(paths[key])
+        if not isinstance(names, list) or not names or any(
+            not isinstance(n, str) or Path(n).name != n or not n.endswith(".json")
+            for n in names
+        ) or len(names) != len(set(names)):
+            raise ValueError(f"{key} requires a unique filename list")
+    world_size = cfg["distributed"]["world_size"]
+    if not isinstance(world_size, int) or world_size < 1:
+        raise ValueError("distributed.world_size must be a positive integer")
     if cfg["model"]["shape_condition_model_type"] != "point_transformer_v3" or cfg[
         "model"
     ].get("use_img_conditioner"):
         raise ValueError(
-            "This implementation supports the audited PTv3 Industry path only"
+            "Use shape_condition_model_type=point_transformer_v3 and use_img_conditioner=false"
         )
     if cfg["model"]["backbone_config"].get("attn_drop", 0) != 0:
         raise ValueError(
@@ -73,12 +74,32 @@ def load(path):
             "Continuous and reconstruction decoding must both be soft_expectation"
         )
     if (
-        cfg["train"]["batch_size"] * cfg["train"]["grad_accum_every"]
+        world_size * cfg["train"]["batch_size"] * cfg["train"]["grad_accum_every"]
         != cfg["distributed"]["effective_batch"]
     ):
-        raise ValueError("batch_size × accumulation must match source effective batch")
+        raise ValueError("world_size × batch_size × grad_accum_every must equal effective_batch")
     if str(cfg["release"]["data_version"]).startswith("REQUIRED"):
         raise ValueError("Set release.data_version explicitly")
+    return cfg
+
+
+def configure_training(cfg, world_size, batch_size=None, grad_accum_every=None):
+    cfg = copy.deepcopy(cfg)
+    batch = cfg["train"]["batch_size"] if batch_size is None else batch_size
+    if world_size < 1 or batch < 1:
+        raise ValueError("Process count and batch size must be positive")
+    if grad_accum_every is None:
+        accumulation, remainder = divmod(cfg["distributed"]["effective_batch"], world_size * batch)
+        if remainder or accumulation < 1:
+            raise ValueError("Set --grad_accum_every for this process count and batch size")
+    else:
+        accumulation = grad_accum_every
+    if accumulation < 1:
+        raise ValueError("Gradient accumulation must be positive")
+    cfg["distributed"]["world_size"] = world_size
+    cfg["train"]["batch_size"] = batch
+    cfg["train"]["grad_accum_every"] = accumulation
+    cfg["distributed"]["effective_batch"] = world_size * batch * accumulation
     return cfg
 
 

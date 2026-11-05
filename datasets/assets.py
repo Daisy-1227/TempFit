@@ -15,6 +15,12 @@ def scene_name(name):
     return name
 
 
+def template_id(annotation):
+    if "template_id" in annotation:
+        return annotation["template_id"]
+    return annotation["primitive_id"]  # Historical GT and raw caches.
+
+
 def validate_scene(raw, gt):
     a = {k: np.asarray(v) for k, v in raw.items()}
     n = len(a["coords"])
@@ -37,37 +43,40 @@ def validate_scene(raw, gt):
         for k in ("scale", "rotate", "translation", "size", "crop_window"):
             if not np.isfinite(g[k]).all():
                 raise ValueError("Nonfinite GT: " + k)
-    # Historical annotations contain unknown/background identities. Preserve and
-    # count them; the native loader's validity filtering remains authoritative.
+    owners = a["instance_ids"].astype(np.int64)
+    if owners.min() < 1 or owners.max() > len(gt):
+        raise ValueError("Input instance reference outside GT")
+    expected_semantic = np.asarray([g["semantic_id"] for g in gt])[owners - 1]
+    if not np.array_equal(a["semantic_ids"], expected_semantic):
+        raise ValueError("Input semantic IDs must match zero-based GT classes")
     return dict(
         raw_instances=len(gt),
         segments=n,
         primitive_groups=p,
-        nonpositive_semantic_or_negative_primitive=sum(
-            g["semantic_id"] < 1 or g["primitive_id"] < 0 for g in gt
+        negative_semantic_or_template=sum(
+            g["semantic_id"] < 0 or template_id(g) < 0 for g in gt
         ),
     )
 
 
-def build_cache(root, manifest, output):
-    """New cache root, never overwrite dataset files. Raw schema used by the loader.
+def build_cache(root, train_manifest, test_manifest, output):
+    """Write loader caches to a new directory.
 
-    This is deliberately not the historical analysis-cache gt_arrays schema.
-    Configure dataset.cache_dir via paths.data_root only after placing the generated
-    cache_pkl directories alongside the corresponding verified JSON files.
+    Place the generated cache_pkl directories alongside the matching JSON files
+    under paths.data_root.
     """
     root = Path(root)
     out = Path(output)
     if out.exists():
         raise FileExistsError(out)
-    names = read(manifest)
+    names = {"train": read(train_manifest), "test": read(test_manifest)}
     out.mkdir(parents=True)
     rows = []
-    for key, split in [("train", "train"), ("val", "test")]:
+    for key, split in [("train", "train"), ("test", "test")]:
         for name in names[key]:
             name = scene_name(name)
             ip = root / split / "svg" / name
-            gp = root / split / "gt_update_size" / name
+            gp = root / split / "gt" / name
             raw = read(ip)
             gt = read(gp)
             stats = validate_scene(raw, gt)
@@ -104,7 +113,8 @@ if __name__ == "__main__":
 
     p = argparse.ArgumentParser()
     p.add_argument("--root", required=True)
-    p.add_argument("--manifest", required=True)
+    p.add_argument("--train-manifest", required=True)
+    p.add_argument("--test-manifest", required=True)
     p.add_argument("--output", required=True)
     a = p.parse_args()
-    print(build_cache(a.root, a.manifest, a.output))
+    print(build_cache(a.root, a.train_manifest, a.test_manifest, a.output))

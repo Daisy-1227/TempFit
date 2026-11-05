@@ -14,6 +14,7 @@ def export_input(sample, g, pred, path):
         scene_lines=np.asarray(svg.coords),
         scene_segment_primitive_ids=np.asarray(svg.primitive_ids),
         scene_primitive_semantic_ids=np.asarray(svg.semantic_ids),
+        scene_semantic_offset=np.int32(0),
         scene_primitive_instance_ids=np.asarray(svg.instance_ids),
         scene_primitive_lengths=np.asarray(svg.primitive_lengths),
         gt_semantic_i=np.asarray(g["semantic_id"], np.int64),

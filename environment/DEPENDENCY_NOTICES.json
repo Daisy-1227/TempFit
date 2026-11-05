@@ -17,8 +17,7 @@
         "file": "Jinja2/licenses/LICENSE.txt",
         "sha256": "3b49dcee4105eb37bac10faf1be260408fe85d252b8e9df2e0979fc1e094437b"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "MarkupSafe",
@@ -38,8 +37,7 @@
         "file": "MarkupSafe/LICENSE.txt",
         "sha256": "489a8e1108509ed98a37bb983e11e0f7e1d31f0bd8f99a79c8448e7ff37d07ea"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "PyYAML",
@@ -59,8 +57,7 @@
         "file": "PyYAML/LICENSE",
         "sha256": "8d3928f9dc4490fd635707cb88eb26bd764102a7282954307d3e5167a577e8a4"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "accelerate",
@@ -74,8 +71,7 @@
         "file": "accelerate/LICENSE",
         "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "addict",
@@ -89,8 +85,7 @@
         "file": "addict/LICENSE",
         "sha256": "ca488d33c512d0b226142090af90e89ae266a901a293f89fd642dfec931e22c1"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "antlr4-python3-runtime",
@@ -99,8 +94,7 @@
     "declared_license": "BSD",
     "declared_license_expression": null,
     "project_urls": [],
-    "extracted_notices": [],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    "extracted_notices": []
   },
   {
     "name": "backports-datetime-fromisoformat",
@@ -120,8 +114,7 @@
         "file": "backports-datetime-fromisoformat/LICENSE",
         "sha256": "629187ec887ebe4638083bdf3079d52c84b8c49a3e60617879e17d985420269a"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "beartype",
@@ -141,8 +134,7 @@
         "file": "beartype/licenses/LICENSE",
         "sha256": "190740b4e331916e1f67ea837bd5980fe45d48fe1cb26a9375431122c784e027"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "ccimport",
@@ -156,8 +148,7 @@
         "file": "ccimport/LICENSE",
         "sha256": "d3cda84545e0a7f819defb8e16b98a1e4305216942f09297a7649c77bef818ba"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "certifi",
@@ -173,8 +164,7 @@
         "file": "certifi/licenses/LICENSE",
         "sha256": "e93716da6b9c0d5a4a1df60fe695b370f0695603d21f6f83f053e42cfc10caf7"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "charset-normalizer",
@@ -193,8 +183,7 @@
         "file": "charset-normalizer/licenses/LICENSE",
         "sha256": "6d0d41bfe170ac6c7dc248c9a63e254d0fb45a60d50a8257d0af92c6e249b887"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "contourpy",
@@ -213,8 +202,7 @@
         "file": "contourpy/LICENSE",
         "sha256": "34170979fc64f4f5e6dfa66ef27dec314ffffc5852000c60f4836ec1dfbf156e"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "cumm-cu118",
@@ -228,8 +216,7 @@
         "file": "cumm-cu118/LICENSE",
         "sha256": "7d1e9f3c869959da4a7472ad9ec3662384b3b67b9a97b5713f9b265373f0e6a2"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "cycler",
@@ -246,8 +233,7 @@
         "file": "cycler/LICENSE",
         "sha256": "f1218143d766da3fea66f13396b7f15df46a83303f29bf96ba6e98eb4d42f408"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "einops",
@@ -263,8 +249,7 @@
         "file": "einops/licenses/LICENSE",
         "sha256": "30d984364296f51ffaecad4b01ee127e95250c5068918d4b66fc96206723e434"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "einx",
@@ -278,8 +263,7 @@
         "file": "einx/LICENSE",
         "sha256": "6023468ba2975393029a63e8a824f8341dd3e55a54da0aa4679c854145cf17f7"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "environs",
@@ -297,8 +281,7 @@
         "file": "environs/licenses/LICENSE",
         "sha256": "90abac296b1a07aa23c20867b853f4e7e3e771df6f569204e51e796f953a0d78"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "filelock",
@@ -317,8 +300,7 @@
         "file": "filelock/licenses/LICENSE",
         "sha256": "88d9b4eb60579c191ec391ca04c16130572d7eedc4a86daa58bf28c6e14c9bcd"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "fire",
@@ -332,8 +314,7 @@
         "file": "fire/licenses/LICENSE",
         "sha256": "a5de77b62266bca0bb97bf058992f0b0f308a83a8ca55ee10fbf6bd8ed8f7ed0"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "flash_attn",
@@ -347,8 +328,7 @@
         "file": "flash_attn/licenses/LICENSE",
         "sha256": "8c9ccb96c065e706135b6cbad279b721da6156e51f3a5f27c6b3329af9416d73"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "fonttools",
@@ -366,8 +346,7 @@
         "file": "fonttools/licenses/LICENSE.external",
         "sha256": "d48762c5842e419b1e354350d5b4774894215b5779486454476dd3341263cf0a"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "frozendict",
@@ -384,8 +363,7 @@
         "file": "frozendict/LICENSE.txt",
         "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "fsspec",
@@ -403,8 +381,7 @@
         "file": "fsspec/licenses/LICENSE",
         "sha256": "2dc35496ce53a7307915c008a844aad53e772b49b34cdd00445067691407ec94"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "gateloop-transformer",
@@ -418,8 +395,7 @@
         "file": "gateloop-transformer/LICENSE",
         "sha256": "242a377761ef3853c662f6977e7617e3eaa347242f544968a796512135cc83e5"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "hilbertcurve",
@@ -433,8 +409,7 @@
         "file": "hilbertcurve/LICENSE",
         "sha256": "0bf50875c27f2707222bb0e4bbb66a72d2bbad689cd0e5a86b1a6021b4bdfa70"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "huggingface-hub",
@@ -448,8 +423,7 @@
         "file": "huggingface-hub/LICENSE",
         "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "idna",
@@ -467,8 +441,7 @@
         "file": "idna/LICENSE.md",
         "sha256": "a59f0b0ef3635874109a4461ca44ff7a70d50696e814767bfaf721d4c9b0db0f"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "industrycad-candidate",
@@ -477,8 +450,7 @@
     "declared_license": null,
     "declared_license_expression": null,
     "project_urls": [],
-    "extracted_notices": [],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    "extracted_notices": []
   },
   {
     "name": "iopath",
@@ -492,14 +464,13 @@
         "file": "iopath/licenses/LICENSE",
         "sha256": "52412d7bc7ce4157ea628bbaacb8829e0a9cb3c58f57f99176126bc8cf2bfc85"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "jaxtyping",
     "version": "0.3.2",
     "wheel": "jaxtyping-0.3.2-py3-none-any.whl",
-    "declared_license": "MIT License\n        \n        Copyright (c) 2022 Google LLC\n        \n        Permission is hereby granted, free of charge, to any person obtaining a copy\n        of this software and associated documentation files (the \"Software\"), to deal\n        in the Software without restriction, including without limitation the rights\n        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n        copies of the Software, and to permit persons to whom the Software is\n        furnished to do so, subject to the following conditions:\n        \n        The above copyright notice and this permission notice shall be included in all\n        copies or substantial portions of the Software.\n        \n        THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n        SOFTWARE.\n        \n        \n        \n        \n        ---\n        Sections of the code were modified from https://github.com/agronholm/typeguard\n        under the terms of the MIT license, reproduced below.\n        ---\n        \n        MIT License\n        \n        Copyright (c) Alex Gr\ufffd\ufffdnholm\n        \n        Permission is hereby granted, free of charge, to any person obtaining a copy\n        of this software and associated documentation files (the \"Software\"), to deal\n        in the Software without restriction, including without limitation the rights\n        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n        copies of the Software, and to permit persons to whom the Software is\n        furnished to do so, subject to the following conditions:\n        \n        The above copyright notice and this permission notice shall be included in all\n        copies or substantial portions of the Software.\n        \n        THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n        SOFTWARE.",
+    "declared_license": "MIT License\n        \n        Copyright (c) 2022 Google LLC\n        \n        Permission is hereby granted, free of charge, to any person obtaining a copy\n        of this software and associated documentation files (the \"Software\"), to deal\n        in the Software without restriction, including without limitation the rights\n        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n        copies of the Software, and to permit persons to whom the Software is\n        furnished to do so, subject to the following conditions:\n        \n        The above copyright notice and this permission notice shall be included in all\n        copies or substantial portions of the Software.\n        \n        THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n        SOFTWARE.\n        \n        \n        \n        \n        ---\n        Sections of the code were modified from https://github.com/agronholm/typeguard\n        under the terms of the MIT license, reproduced below.\n        ---\n        \n        MIT License\n        \n        Copyright (c) Alex Gr��nholm\n        \n        Permission is hereby granted, free of charge, to any person obtaining a copy\n        of this software and associated documentation files (the \"Software\"), to deal\n        in the Software without restriction, including without limitation the rights\n        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n        copies of the Software, and to permit persons to whom the Software is\n        furnished to do so, subject to the following conditions:\n        \n        The above copyright notice and this permission notice shall be included in all\n        copies or substantial portions of the Software.\n        \n        THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n        SOFTWARE.",
     "declared_license_expression": null,
     "project_urls": [
       "repository, https://github.com/google/jaxtyping"
@@ -509,8 +480,7 @@
         "file": "jaxtyping/licenses/LICENSE",
         "sha256": "2ef67751f7ae1fa8d1765c494d591767fa68dc1e12ab043dd0fbbfbc1ffda5bc"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "kiwisolver",
@@ -529,8 +499,7 @@
         "file": "kiwisolver/LICENSE",
         "sha256": "238e69906d7e507a94832b9831131862c4176d58c002b388e2e99db5d83677d2"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "lark",
@@ -547,8 +516,7 @@
         "file": "lark/LICENSE",
         "sha256": "2eee60f52d4e11357bf89e72b034d050e285e47fda1361e5662fb322ee27d771"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "loguru",
@@ -561,8 +529,7 @@
       "Documentation, https://loguru.readthedocs.io/en/stable/index.html",
       "Homepage, https://github.com/Delgan/loguru"
     ],
-    "extracted_notices": [],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    "extracted_notices": []
   },
   {
     "name": "marshmallow",
@@ -582,8 +549,7 @@
         "file": "marshmallow/licenses/LICENSE",
         "sha256": "906b5d9051e426144cb173ad911667b8ebd05a9c584c2c26c135b32a3ed12001"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "matplotlib",
@@ -605,8 +571,7 @@
         "file": "matplotlib/LICENSE",
         "sha256": "5a1a81ea301728c8bba2933da832c0cd62229daf20893a024ab3d53244468dbc"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "mpmath",
@@ -624,8 +589,7 @@
         "file": "mpmath/LICENSE",
         "sha256": "c26cae81da4508e5e249985777a33821f183223ebb74d7f8cfbf90fe7eef2fb7"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "networkx",
@@ -644,8 +608,7 @@
         "file": "networkx/LICENSE.txt",
         "sha256": "5b433b90f755eb9bbd06feff1d1a4f5f232c5208a185694199e45fa95d762792"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "ninja",
@@ -666,8 +629,7 @@
         "file": "ninja/licenses/LICENSE_Apache_20",
         "sha256": "73ba74dfaa520b49a401b5d21459a8523a146f3b7518a833eea5efa85130bf68"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "numpy",
@@ -688,8 +650,7 @@
         "file": "numpy/LICENSE.txt",
         "sha256": "c002bd26de7dc7aa464250a0de063d58fe55974452e4389e5c21c350a820bf06"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "nvidia-cublas-cu11",
@@ -703,8 +664,7 @@
         "file": "nvidia-cublas-cu11/License.txt",
         "sha256": "ad6f5853fba0ca0d159d0f58d49ae49830c2f8c93f7a92648b9ce90adb4c6ccd"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "nvidia-cuda-cupti-cu11",
@@ -718,8 +678,7 @@
         "file": "nvidia-cuda-cupti-cu11/License.txt",
         "sha256": "ad6f5853fba0ca0d159d0f58d49ae49830c2f8c93f7a92648b9ce90adb4c6ccd"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "nvidia-cuda-nvrtc-cu11",
@@ -733,8 +692,7 @@
         "file": "nvidia-cuda-nvrtc-cu11/License.txt",
         "sha256": "ad6f5853fba0ca0d159d0f58d49ae49830c2f8c93f7a92648b9ce90adb4c6ccd"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "nvidia-cuda-runtime-cu11",
@@ -748,8 +706,7 @@
         "file": "nvidia-cuda-runtime-cu11/License.txt",
         "sha256": "ad6f5853fba0ca0d159d0f58d49ae49830c2f8c93f7a92648b9ce90adb4c6ccd"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "nvidia-cudnn-cu11",
@@ -763,8 +720,7 @@
         "file": "nvidia-cudnn-cu11/License.txt",
         "sha256": "49cf79bdb35734b52fe6203013b3bd759f81e998cd32aa2c65c51db9a88c61d2"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "nvidia-cufft-cu11",
@@ -778,8 +734,7 @@
         "file": "nvidia-cufft-cu11/License.txt",
         "sha256": "ad6f5853fba0ca0d159d0f58d49ae49830c2f8c93f7a92648b9ce90adb4c6ccd"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "nvidia-curand-cu11",
@@ -793,8 +748,7 @@
         "file": "nvidia-curand-cu11/License.txt",
         "sha256": "ad6f5853fba0ca0d159d0f58d49ae49830c2f8c93f7a92648b9ce90adb4c6ccd"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "nvidia-cusolver-cu11",
@@ -808,8 +762,7 @@
         "file": "nvidia-cusolver-cu11/License.txt",
         "sha256": "ad6f5853fba0ca0d159d0f58d49ae49830c2f8c93f7a92648b9ce90adb4c6ccd"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "nvidia-cusparse-cu11",
@@ -823,8 +776,7 @@
         "file": "nvidia-cusparse-cu11/License.txt",
         "sha256": "ad6f5853fba0ca0d159d0f58d49ae49830c2f8c93f7a92648b9ce90adb4c6ccd"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "nvidia-nccl-cu11",
@@ -838,8 +790,7 @@
         "file": "nvidia-nccl-cu11/License.txt",
         "sha256": "f769fa2d363213f599366da46e2a8d650c86eaae845aec4d44b2f5fd01d4ec59"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "nvidia-nvtx-cu11",
@@ -853,8 +804,7 @@
         "file": "nvidia-nvtx-cu11/License.txt",
         "sha256": "ad6f5853fba0ca0d159d0f58d49ae49830c2f8c93f7a92648b9ce90adb4c6ccd"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "omegaconf",
@@ -868,8 +818,7 @@
         "file": "omegaconf/LICENSE",
         "sha256": "b31375ed5d5cbe7ec2d0c4c14df8afa7a8e5501bbe25f70b6cbc461685f4b91a"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "opencv-python",
@@ -887,8 +836,7 @@
         "file": "opencv-python/LICENSE-3RD-PARTY.txt",
         "sha256": "4fc3c113d53e95da0f3c433655a67067b7310e53af31eb6d280e94cc6927a363"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "packaging",
@@ -913,8 +861,7 @@
         "file": "packaging/licenses/LICENSE.BSD",
         "sha256": "b70e7e9b742f1cc6f948b34c16aa39ffece94196364bc88ff0d2180f0028fac5"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "pccm",
@@ -928,8 +875,7 @@
         "file": "pccm/LICENSE",
         "sha256": "851b23248e7b31a4bb84dcab32371cf4b1219a822528a7a2915a2dbd4714a30b"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "pillow",
@@ -951,8 +897,7 @@
         "file": "pillow/licenses/LICENSE",
         "sha256": "f36612f01986767553bf053454df48e99c423ac73dcf9798c8a8336df0767b48"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "portalocker",
@@ -970,8 +915,7 @@
         "file": "portalocker/LICENSE",
         "sha256": "a50570fa3b3102a42d7babb0569238b0b3c0aedce0063c8e4d65060dfd3f7293"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "psutil",
@@ -985,8 +929,7 @@
         "file": "psutil/LICENSE",
         "sha256": "b89c063b3786e28e0c0a38f1931db61fed35e69dd2a2966fbecffee0f46c8d10"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "pybind11",
@@ -1006,8 +949,7 @@
         "file": "pybind11/LICENSE",
         "sha256": "83965b843b98f670d3a85bd041ed4b372c8ec50d7b4a5995a83ac697ba675dcb"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "pyparsing",
@@ -1023,8 +965,7 @@
         "file": "pyparsing/LICENSE",
         "sha256": "10d5120a16805804ffda8b688c220bfb4e8f39741b57320604d455a309e01972"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "python-dateutil",
@@ -1041,8 +982,7 @@
         "file": "python-dateutil/LICENSE",
         "sha256": "ba00f51a0d92823b5a1cde27d8b5b9d2321e67ed8da9bc163eff96d5e17e577e"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "python-dotenv",
@@ -1056,8 +996,7 @@
         "file": "python-dotenv/licenses/LICENSE",
         "sha256": "80619b7049f08c81683ad0e01f08f257a840652dd71ee83146d36658c7d2c2b9"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "pytorch3d",
@@ -1075,8 +1014,7 @@
         "file": "pytorch3d/licenses/LICENSE-3RD-PARTY",
         "sha256": "900ecf898aa41fd55402544ebaf4c06e94e3c4a0ce4dbf653e19932ef8a06a3c"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "regex",
@@ -1090,8 +1028,7 @@
         "file": "regex/LICENSE.txt",
         "sha256": "bff55ef4cdcc8c14ce259f8e8ab60e264418440d6335f4dc138273fbd506144d"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "requests",
@@ -1108,8 +1045,7 @@
         "file": "requests/LICENSE",
         "sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "rotary-embedding-torch",
@@ -1123,8 +1059,7 @@
         "file": "rotary-embedding-torch/LICENSE",
         "sha256": "fe74654058fe2ba069808dbf36defd6e207baf8859f36366a6a3ceae5aa6ecc5"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "safetensors",
@@ -1136,8 +1071,7 @@
       "Homepage, https://github.com/huggingface/safetensors",
       "Source, https://github.com/huggingface/safetensors"
     ],
-    "extracted_notices": [],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    "extracted_notices": []
   },
   {
     "name": "scipy",
@@ -1157,8 +1091,7 @@
         "file": "scipy/LICENSE.txt",
         "sha256": "828cb9a7369c0a9f633ce7c10023f8d822f0f76b54ce25c723361d45b088879a"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "setuptools",
@@ -1176,8 +1109,7 @@
         "file": "setuptools/licenses/LICENSE",
         "sha256": "86da0f01aeae46348a3c3d465195dc1ceccde79f79e87769a64b8da04b2a4741"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "six",
@@ -1191,8 +1123,7 @@
         "file": "six/LICENSE",
         "sha256": "4375ba20e2b9c6c4e7cad2940a628fd90e95cc3d50ee92aae755715d8ba1fbd0"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "spconv-cu118",
@@ -1206,8 +1137,7 @@
         "file": "spconv-cu118/LICENSE",
         "sha256": "3fa306db6d0cee13c1d7e0c687849cab1f40a99f7209d38d6e5f6d6556f416ec"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "svgpathtools",
@@ -1221,8 +1151,7 @@
         "file": "svgpathtools/LICENSE.txt",
         "sha256": "e61b5f4e69dcb874e07ee26762113879ec326a7c98c75c9aa2c8ea5453b4e495"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "svgwrite",
@@ -1236,8 +1165,7 @@
         "file": "svgwrite/LICENSE.TXT",
         "sha256": "1813a7553de927e8865345b1051c36d741b70d0e9fcab2572df673a18f936629"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "sympy",
@@ -1253,8 +1181,7 @@
         "file": "sympy/LICENSE",
         "sha256": "07a5e9819f727b4986ad2829c7a29a6320d42575f720eb24d71b7fef573a0286"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "termcolor",
@@ -1272,8 +1199,7 @@
         "file": "termcolor/licenses/COPYING.txt",
         "sha256": "e79b6bd82962c1330caaa7c42278567b08667777673f8e2371a624d5715d4c0e"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "timm",
@@ -1291,8 +1217,7 @@
         "file": "timm/licenses/LICENSE",
         "sha256": "71b111620fa32c17a80ccd6db2da759d31a591e497d8b5f382174f59d1b59d49"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "tokenizers",
@@ -1304,8 +1229,7 @@
       "Homepage, https://github.com/huggingface/tokenizers",
       "Source, https://github.com/huggingface/tokenizers"
     ],
-    "extracted_notices": [],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    "extracted_notices": []
   },
   {
     "name": "toolz",
@@ -1319,8 +1243,7 @@
         "file": "toolz/LICENSE.txt",
         "sha256": "053664057b295b2f0c1332291a77102f01a099d87926e449e08a117eea9660bf"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "torch",
@@ -1338,8 +1261,7 @@
         "file": "torch/NOTICE",
         "sha256": "c2cc7bf0caec7652c2b460a8a470bea1677f241e4ab8e431df34cf17f5a9fec0"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "torch_scatter",
@@ -1353,8 +1275,7 @@
         "file": "torch_scatter/LICENSE",
         "sha256": "7cbd1d9075b9cb3daa771f52d10e1a6b9c4577851f055d002449932fee4d7486"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "torchvision",
@@ -1368,8 +1289,7 @@
         "file": "torchvision/LICENSE",
         "sha256": "6502f676851cfe25f8af75531dfb32375b7325b73c37e7b43741fa422893e71d"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "tqdm",
@@ -1383,8 +1303,7 @@
       "changelog, https://tqdm.github.io/releases",
       "wiki, https://github.com/tqdm/tqdm/wiki"
     ],
-    "extracted_notices": [],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    "extracted_notices": []
   },
   {
     "name": "transformers",
@@ -1398,8 +1317,7 @@
         "file": "transformers/LICENSE",
         "sha256": "77fd4710def9ec3c0f6225800e0235f15a425abd4a8b03559127fcd782612049"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "trimesh",
@@ -1416,8 +1334,7 @@
         "file": "trimesh/licenses/LICENSE.md",
         "sha256": "fe27b5ef8710676cc85255da28a32f394e2ef3f4ce47075a1c732a9ea1d7bd03"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "triton",
@@ -1426,8 +1343,7 @@
     "declared_license": null,
     "declared_license_expression": null,
     "project_urls": [],
-    "extracted_notices": [],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    "extracted_notices": []
   },
   {
     "name": "typing_extensions",
@@ -1448,8 +1364,7 @@
         "file": "typing_extensions/licenses/LICENSE",
         "sha256": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "tzdata",
@@ -1471,8 +1386,7 @@
         "file": "tzdata/licenses/licenses/LICENSE_APACHE",
         "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "urllib3",
@@ -1491,8 +1405,7 @@
         "file": "urllib3/licenses/LICENSE.txt",
         "sha256": "130e3a64d5fdd5d096a752694634a7d9df284469de86e5732100268041e3d686"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "wadler_lindig",
@@ -1508,8 +1421,7 @@
         "file": "wadler_lindig/licenses/LICENSE",
         "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "wheel",
@@ -1528,8 +1440,7 @@
         "file": "wheel/LICENSE.txt",
         "sha256": "30c23618679108f3e8ea1d2a658c7ca417bdfc891c98ef1a89fa4ff0c9828654"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   },
   {
     "name": "x-transformers",
@@ -1546,7 +1457,6 @@
         "file": "x-transformers/licenses/LICENSE",
         "sha256": "02cf6ed7df17f94fafa61e67a089ee51faac006db35ffa173c70e6763c253cf6"
       }
-    ],
-    "redistribution_clearance": "not_assessed_by_metadata_extraction"
+    ]
   }
 ]

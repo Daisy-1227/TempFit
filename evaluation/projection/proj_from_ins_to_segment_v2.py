@@ -982,18 +982,16 @@ def process_one_npz(
         if assignment_mode not in {"robust", "bidirectional_overshoot"}:
             raise ValueError(f"unknown assignment_mode: {assignment_mode}")
         seg_prim_idx = data["scene_segment_primitive_ids"]
-        prim_sem = data[
-            "scene_primitive_semantic_ids"
-        ]  # (Nprim,) segment 级约定（=instance 级 - 1）
+        prim_sem = data["scene_primitive_semantic_ids"]
         prim_inst = data["scene_primitive_instance_ids"]  # (Nprim,) -1 = bg
         prim_len = data["scene_primitive_lengths"]
 
-        # 数据集 segment 级 sem 比 instance 级 sem 少 1（preprocessing 统一做了 -1 shift）；
-        # 这里把 segment 级 sem +1 转回 model / instance 约定 [0, num_semantic-1]，方便后续指标计算。
-        # 保留原值 < 0（潜在 bg 哨兵）不动。
+        # New exports use class IDs directly; older files use an offset.
         prim_sem_model_conv = prim_sem.astype(np.int32).copy()
         valid_sem = prim_sem_model_conv >= 0
-        prim_sem_model_conv[valid_sem] += int(params.get("semantic_offset", 1))
+        prim_sem_model_conv[valid_sem] += int(
+            data.get("scene_semantic_offset", params.get("semantic_offset", 1))
+        )
 
         seg_gt_sem = prim_sem_model_conv[seg_prim_idx].astype(np.int32)
         seg_gt_inst = prim_inst[seg_prim_idx].astype(np.int32)

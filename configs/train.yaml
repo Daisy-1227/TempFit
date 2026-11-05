@@ -336,10 +336,10 @@ model:
   continuous_decode_mode: soft_expectation
 train:
   use_wandb_tracking: false
-  exp_name: industry_soft_idrop_scenemix_scratch_20261025
+  exp_name: tempfit
   epochs: 500
-  batch_size: 8
-  grad_accum_every: 16
+  batch_size: 4
+  grad_accum_every: 4
   freeze_bn_stats: false
   lr: 0.0001
   use_onecycle_lr: true
@@ -357,7 +357,7 @@ train:
   checkpoint_every_updates: 33
   val_native_ar: true
 distributed:
-  world_size: 1
+  world_size: 8
   sync_batchnorm: true
   find_unused_parameters: true
   effective_batch: 128
@@ -382,24 +382,9 @@ instance_scale:
   - -2.0
   - 2.0
 experiment:
-  arm: scratch_shared_soft_idrop_scenemix_p50
-  initialization: Random backbone, decoder and selector; no pretrained checkpoint
-  loss_reduction: global instance mean for attributes/assignment/recon, global boundary
-    mean for EOS
   data_seed: 20260904
-  no_svg_resampling: true
-  strict_scene_identity: true
-  no_clipping: true
-  full_source_translation_filter:
-  - -2.0
-  - 2.0
-  paired_context: Two upstream seeds per scene per epoch; each has native and anchored-context
-    view; total repeat remains 4
-  stop_after_epochs: 500
 initialization:
-  mode: random_all_trainable_parameters
   source_epoch: 0
-  checkpoint: null
 context_augmentation:
   sample_ratio: 0.3
   max_delta: 0.3
@@ -443,15 +428,6 @@ scene_mix:
   additional_geometry_transform: false
   exclude_same_source: true
   stage: post_grid_post_dropout_pre_collate
-  source_microbatch: 8
-  source_effective_batch: 128
-  capacity_preflight_adjustment:
-    original_limit: 7000
-    original_mixed_source_fraction: 0.078125
-    proposed_limit: 14000
-    expected_mixed_source_fraction: 0.4140625
-    reason: 7000 rejects 113 of 133 triggered pairs; preserve complete source views
-      without sparse-scene selection dominating
 runtime_optimization:
   enabled: true
   transport: shared_storage_bytes_v1
@@ -463,10 +439,10 @@ paths:
   data_root: ../data/industrycad/template-v1
   template_root: ../data/industrycad/resources/templates
   primitive_mapping: ../data/industrycad/resources/model_mapping.json
-  manifest: ../splits/official494.json
+  train_manifest: ../splits/train.json
+  test_manifest: ../splits/test.json
   invalid_train: ../data/industrycad/resources/invalid_train.txt
   donor_bank: ../data/industrycad/resources/donor
 release:
   data_version: industrycad-template-v1
-  single_gpu_only: true
-  evaluation_population: official494
+  evaluation_population: test

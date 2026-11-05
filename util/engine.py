@@ -1,6 +1,7 @@
 import gc
 import math
 import time
+from contextlib import nullcontext
 from dataclasses import dataclass, field
 
 import torch
@@ -14,6 +15,7 @@ from evaluation.metrics import METRICS, summarize
 from util.guard import ProtectedStop
 from util.io import seed
 from util.logger import log_update
+from util.distributed import check_resources, gather_objects, on_main
 
 
 @dataclass
@@ -44,10 +46,12 @@ def train_one_epoch(
     train_cfg = cfg["train"]
     batch_size = train_cfg["batch_size"]
     accumulation = train_cfg["grad_accum_every"]
-    microbatches = math.ceil(len(dataset) / batch_size)
+    world = accelerator.num_processes
+    rank = accelerator.process_index
     dataset.epoch = epoch
     model.model.set_recon_epoch(cfg["initialization"]["source_epoch"] + epoch)
-    indices = schedule(len(dataset), epoch, cfg["experiment"]["data_seed"], 1, 0)
+    indices = schedule(len(dataset), epoch, cfg["experiment"]["data_seed"], world, rank)
+    microbatches = math.ceil(len(indices) / batch_size)
     if not 0 <= state.offset <= microbatches:
         raise ValueError("Resume micro offset invalid")
     workers = cfg["distributed"]["workers_per_rank"]
@@ -63,12 +67,12 @@ def train_one_epoch(
         sampler=indices[state.offset * batch_size :],
         num_workers=workers,
         collate_fn=transport_collate if transport else identity,
-        generator=torch.Generator().manual_seed(train_cfg["seed"] + epoch),
+        generator=torch.Generator().manual_seed(train_cfg["seed"] + epoch * world + rank),
         **options,
     )
     iterator = iter(loader)
     while state.offset < microbatches:
-        reason = guard.boundary()
+        reason = check_resources(accelerator, guard, boundary=True)
         if reason:
             save_latest()
             raise ProtectedStop(reason)
@@ -80,12 +84,12 @@ def train_one_epoch(
         if transport:
             source = decode(source)
         mixed = [
-            mix_group(group, cfg, epoch, state.offset + j)
+            mix_group(group, cfg, epoch, (state.offset + j) * world + rank)
             for j, group in enumerate(source)
         ]
         window = [item[0] for item in mixed]
         counts = [[model.counts(item["sample"]) for item in group] for group in window]
-        # Normalize over all real instances in the accumulation window.
+        # Normalize over real instances across every rank and accumulated microbatch.
         denominators = torch.tensor(
             [
                 sum(
@@ -98,6 +102,7 @@ def train_one_epoch(
             device=accelerator.device,
             dtype=torch.float32,
         )
+        denominators = accelerator.reduce(denominators, reduction="sum")
         optimizer.zero_grad(set_to_none=True)
         model.clear_cache()
         update = [0.0] * len(METRICS)
@@ -105,21 +110,29 @@ def train_one_epoch(
             1.0, (state.step + 1) / cfg["soft_guidance"]["beta_warmup_updates"]
         )
         for j, group in enumerate(window):
-            guard.check()
-            seed(train_cfg["seed"] + epoch * 10000000 + state.offset + j)
+            check_resources(accelerator, guard)
+            seed(train_cfg["seed"] + epoch * 10000000 + (state.offset + j) * world + rank)
             inputs, coords, targets = batch(group, accelerator.device)
-            with accelerator.autocast():
-                result = wrapped(
-                    inputs,
-                    coords,
-                    targets,
-                    denominators,
-                    beta=beta,
-                    audit=max_updates is not None,
+            synchronization = (
+                accelerator.no_sync(wrapped) if j + 1 < len(window) else nullcontext()
+            )
+            with synchronization:
+                with accelerator.autocast():
+                    result = wrapped(
+                        inputs,
+                        coords,
+                        targets,
+                        denominators,
+                        beta=beta,
+                        audit=max_updates is not None,
+                    )
+                    # DDP averages gradients; recover the global instance-weighted sum.
+                    loss = result["objective"] * world
+                finite = accelerator.reduce(
+                    torch.isfinite(loss).to(torch.int32), reduction="sum"
                 )
-                loss = result["objective"]
-                if not torch.isfinite(loss):
-                    raise FloatingPointError("Nonfinite training loss")
+                if int(finite) != world:
+                    raise FloatingPointError("Nonfinite training loss on a rank")
                 accelerator.backward(loss)
             for k, name in enumerate(METRICS):
                 update[k] += float(result["metrics"][name])
@@ -150,9 +163,19 @@ def train_one_epoch(
                 raise FloatingPointError("Missing expected training gradient group")
         optimizer.step()
         scheduler.step()
+        update = accelerator.reduce(
+            torch.tensor(update, device=accelerator.device, dtype=torch.float64),
+            reduction="sum",
+        ).tolist()
         state.step += 1
         state.offset += len(window)
         state.totals = [a + b for a, b in zip(state.totals, update)]
+        mix_records = gather_objects(
+            dict(
+                events=[event for item in mixed for event in item[1]],
+                sources=sum(item["real"] for group in source for item in group),
+            )
+        )
         row = dict(
             step=state.step,
             epoch=epoch + 1,
@@ -161,10 +184,13 @@ def train_one_epoch(
             beta=beta,
             grad_norm=float(norm),
             seconds=time.perf_counter() - started,
-            peak_memory_gib=torch.cuda.max_memory_allocated() / 2**30,
+            peak_memory_gib=(
+                torch.cuda.max_memory_allocated() / 2**30
+                if accelerator.device.type == "cuda" else 0.0
+            ),
             scene_mix=summarize_mix(
-                [event for item in mixed for event in item[1]],
-                sum(item["real"] for group in source for item in group),
+                [event for record in mix_records for event in record["events"]],
+                sum(record["sources"] for record in mix_records),
             ),
             **summarize(
                 update,
@@ -176,7 +202,7 @@ def train_one_epoch(
         )
         if max_updates is not None:
             row["gradient_square_by_group"] = gradient_groups
-        log_update(output, row)
+        on_main(accelerator, lambda: log_update(output, row))
         del source, mixed, window, counts, denominators
         model.clear_cache()
         gc.collect()
