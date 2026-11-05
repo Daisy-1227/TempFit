@@ -117,6 +117,22 @@ accelerate launch --multi_gpu --num_processes 8 --mixed_precision bf16 train.py 
 
 `--pretrained` loads model weights for a new run. `--resume` restores the model, optimizer, scheduler, and training progress with the same process count and training settings. Both options also work with the single-GPU `python train.py` command. Training settings are defined in [configs/train.yaml](configs/train.yaml).
 
+## Citation
+
+If you have any question about this repo, feel free to drop me an email [littledaisy20001227@gmail.com](mailto:littledaisy20001227@gmail.com)
+
+If you find TempFit useful in your research, please cite our paper:
+
+```bibtex
+@article{xu2026tempfit,
+    title={TempFit: Panoptic Symbol Spotting via Template Fitting},
+    author={Honghao Xu and Hao Wang and Xiang Liu and Juzhan Xu and Manfred Lau and Kai Xu and Ruizhen Hu},
+    journal={ACM Transactions on Graphics},
+    year={2026},
+    url={https://arxiv.org/abs/2610.17776}
+}
+```
+
 ## License
 
 The project's original code and model weights are released under the MIT License. The dataset is released under CC BY-NC 4.0. See [the project license](licenses/PROJECT_LICENSE.txt) and [third-party notices](licenses/THIRD_PARTY_NOTICES.md) for details.
