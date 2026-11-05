@@ -1,5 +1,5 @@
 from pathlib import Path
-import hashlib, json, random, os
+import hashlib, json, random
 import numpy as np
 import torch
 from util.config import semantic_digest
@@ -55,7 +55,6 @@ def object_digest(value):
 
 
 def binding(cfg):
-    sources = source_fingerprint()
     assets = {}
     for k in ("manifest", "primitive_mapping", "invalid_train"):
         assets[k] = sha(cfg["paths"][k])
@@ -83,7 +82,7 @@ def binding(cfg):
             raise ValueError("Prepared data content changed: " + row["path"])
     assets["data_manifest"] = sha(path)
     return dict(
-        layout="research-v1", config=semantic_digest(cfg), source=sources, assets=assets
+        layout="research-v1", config=semantic_digest(cfg), assets=assets
     )
 
 
@@ -138,23 +137,14 @@ def load_model(raw, path, cfg=None):
     return payload
 
 
-def source_fingerprint():
-    root = Path(__file__).resolve().parent.parent
-    files = [
-        root / name for name in ("train.py", "inference.py", "evaluate.py")
-    ]
-    for folder in ("models", "datasets", "evaluation", "util"):
-        files.extend((root / folder).rglob("*.py"))
-    return {str(path.relative_to(root)): sha(path) for path in sorted(files)}
-
-
 def validate_resume_package(package, identity):
     if package.get("format") != "industrycad-training-v2":
-        raise ValueError(
-            "Resume requires a checkpoint from this source layout. Restore older training states with their archived runtime; inference weights remain supported."
-        )
-    if package["binding"] != identity:
-        raise ValueError("Resume requires matching source, configuration and assets")
+        raise ValueError("Resume requires an industrycad-training-v2 checkpoint")
+    # Older checkpoints include source hashes; resume depends on configuration and assets.
+    saved = {k: v for k, v in package["binding"].items() if k != "source"}
+    current = {k: v for k, v in identity.items() if k != "source"}
+    if saved != current:
+        raise ValueError("Resume requires matching configuration and assets")
 
 
 def restore_training(model, optimizer, scheduler, path, identity):

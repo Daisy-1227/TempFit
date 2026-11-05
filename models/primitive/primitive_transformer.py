@@ -2671,23 +2671,12 @@ class PrimitiveTransformerDiscrete(Module, PyTorchModelHubMixin):
                     FiLM(dim_shape, dim) if shape_cond_with_film else identity
                 )
             elif "point_transformer_v3" in shape_condition_model_type:
-                # self.conditioner = create_point_extractor(pretrained_path=cad_pc_conditioner_path, freeze_backbone=freeze_backbone, bg_pred=self.bg_pred, use_dense_feat=self.use_dense_feat)
-                # # Define hierarchical conditioner
-                # # self.to_cond_dim = nn.Linear(self.cad_pc_conditioner.get_feature_dim(), self.conditioner.dim_latent)
-                # # self.to_cond_dim_head = nn.Linear(self.cad_pc_conditioner.get_feature_dim(), self.conditioner.dim_latent)
-                # if freeze_backbone:
-                #     set_module_requires_grad_(self.conditioner, False)
                 self.conditioner = PointTransformerV3(**backbone_config)
                 dim_shape = dim
                 self.shape_coarse_film_cond = (
                     FiLM(dim_shape, dim) if shape_cond_with_film else identity
                 )
                 self.to_cond_dim = nn.Linear(64, dim_shape)
-                # if self.bg_pred:
-                #     self.to_cond_dim = nn.Linear(self.conditioner.dec_channels, dim_shape)
-                # else:
-                #     self.to_cond_dim = nn.Linear(self.conditioner.enc_channels, dim_shape)
-                # self.to_cond_dim = nn.Linear(self.conditioner.dec_channels, dim_shape)
                 if shape_cond_with_perceiver_prefix:
                     self.perceiver_resampler = PerceiverResampler(
                         input_dim=64,

@@ -8,7 +8,6 @@ Please cite our work if the code is helpful to you.
 import os
 import random
 import numbers
-from tkinter import EW
 import scipy
 import scipy.ndimage
 import scipy.interpolate
@@ -861,18 +860,6 @@ class NormalizeColor(object):
         return data_dict
 
 
-# @TRANSFORMS.register_module()
-# class NormalizeCoord(object):
-#     def __call__(self, data_dict):
-#         if "coord" in data_dict.keys():
-#             # modified from pointnet2
-#             centroid = np.mean(data_dict["coord"], axis=0)
-#             data_dict["coord"] -= centroid
-#             m = np.max(np.sqrt(np.sum(data_dict["coord"] ** 2, axis=1)))
-#             data_dict["coord"] = data_dict["coord"] / m
-#         return data_dict
-
-
 @TRANSFORMS.register_module()
 class PositiveShift(object):
     def __call__(self, data_dict):
@@ -977,51 +964,6 @@ class RandomDropout(object):
                 data_dict["sampled_index"] = np.where(mask[idx])[0]
             data_dict = index_operator(data_dict, idx)
         return data_dict
-
-
-# @TRANSFORMS.register_module()
-# class RandomRotate(object):
-#     def __init__(self, angle=None, center=None, axis="z", always_apply=False, p=0.5):
-#         self.angle = [-1, 1] if angle is None else angle
-#         self.axis = axis
-#         self.always_apply = always_apply
-#         self.p = p if not self.always_apply else 1
-#         self.center = center
-
-#     def __call__(self, data_dict):
-#         if random.random() > self.p:
-#             return data_dict
-#         angle = np.random.uniform(self.angle[0], self.angle[1]) * np.pi
-#         rot_cos, rot_sin = np.cos(angle), np.sin(angle)
-#         if self.axis == "x":
-#             rot_t = np.array([[1, 0, 0], [0, rot_cos, -rot_sin], [0, rot_sin, rot_cos]])
-#         elif self.axis == "y":
-#             rot_t = np.array([[rot_cos, 0, rot_sin], [0, 1, 0], [-rot_sin, 0, rot_cos]])
-#         elif self.axis == "z":
-#             rot_t = np.array([[rot_cos, -rot_sin, 0], [rot_sin, rot_cos, 0], [0, 0, 1]])
-#         else:
-#             raise NotImplementedError
-#         if "coord" in data_dict.keys():
-#             if self.center is None:
-#                 x_min, y_min, z_min = data_dict["coord"].min(dim=0)[0]
-#                 x_max, y_max, z_max = data_dict["coord"].max(dim=0)[0]
-#                 center = [(x_min + x_max) / 2, (y_min + y_max) / 2, (z_min + z_max) / 2]
-#             else:
-#                 center = self.center
-#             data_dict["coord"] -= center
-#             data_dict["coord"] = np.dot(data_dict["coord"], np.transpose(rot_t))
-#             data_dict["coord"] += center
-#         if "normal" in data_dict.keys():
-#             data_dict["normal"] = np.dot(data_dict["normal"], np.transpose(rot_t))
-
-#         # 对primitive参数进行相应变换
-#         if "translation" in data_dict and "rotation" in data_dict:
-#             # 构建4x4变换矩阵
-#             transform_matrix = np.eye(4)
-#             transform_matrix[:3, :3] = rot_t
-#             data_dict = apply_transform_to_primitives(data_dict, transform_matrix, center)
-
-#         return data_dict
 
 
 @TRANSFORMS.register_module()

@@ -13,7 +13,7 @@ from models import build_model
 from util import checkpoint
 from util.config import load
 from util.guard import ProtectedStop, ResourceGuard
-from util.io import save, seed
+from util.io import save, seed, sha
 from util.speed import install
 
 
@@ -21,7 +21,12 @@ def get_args_parser():
     parser = argparse.ArgumentParser("IndustryCAD training")
     parser.add_argument("--config", default="configs/train.yaml")
     parser.add_argument("--output_dir", "--output", dest="output_dir", required=True)
-    parser.add_argument("--resume", default=None)
+    weights = parser.add_mutually_exclusive_group()
+    weights.add_argument("--resume", default=None, help="Restore the full training state")
+    weights.add_argument(
+        "--pretrained", default=None,
+        help="Load model and selector weights (.pt or .safetensors) for a new training run",
+    )
     parser.add_argument("--max_updates", "--max-updates", dest="max_updates", type=int)
     parser.add_argument(
         "--check_config", "--check-config", dest="check_config", action="store_true"
@@ -55,6 +60,20 @@ def main(args):
         model = torch.nn.SyncBatchNorm.convert_sync_batchnorm(build_model(cfg)).to(
             accelerator.device
         )
+        if args.pretrained:
+            metadata = checkpoint.load_model(model, args.pretrained, cfg)
+            save(
+                output / "INITIALIZATION.json",
+                dict(
+                    mode="pretrained",
+                    checkpoint=str(Path(args.pretrained).resolve()),
+                    sha256=sha(args.pretrained),
+                    source_step=metadata.get("step"),
+                    source_epoch=metadata.get("epoch"),
+                    optimizer_scheduler_reset=True,
+                ),
+            )
+            del metadata
         optimizer = torch.optim.AdamW(
             [p for p in model.parameters() if p.requires_grad],
             lr=cfg["train"]["lr"],
